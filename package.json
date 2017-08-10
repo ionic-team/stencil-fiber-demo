@@ -4,8 +4,8 @@
   "description": "Demo of Stencil app using Ionic components to show rendering capabilities",
   "main": "index.js",
   "scripts": {
-    "build": "stencil build --prod",
-    "dev": "sd concurrent \"stencil build --watch\" \"stencil-dev-server\"",
+    "build": "stencil build",
+    "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/ionic-team/stencil-fiber-demo.git"
   },
   "dependencies": {
-    "@stencil/core": "0.0.3"
+    "@stencil/core": "0.0.4-3"
   },
   "author": "",
   "license": "MIT",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/ionic-team/stencil-fiber-demo#readme",
   "devDependencies": {
-    "@stencil/dev-server": "0.0.9",
-    "@stencil/utils": "0.0.2"
+    "@stencil/dev-server": "0.0.14",
+    "@stencil/utils": "0.0.4"
   }
 }

@@ -135,14 +135,55 @@ https://github.com/WebReflection/document-register-element
      * File names and value
      */
 
-    function attachListeners(plt, listeners, elm, instance) {
+    function initElementListeners(plt, elm) {
+        // so the element was just connected, which means it's in the DOM
+        // however, the component instance hasn't been created yet
+        // but what if an event it should be listening to get emitted right now??
+        // let's add our listeners right now to our element, and if it happens
+        // to receive events between now and the instance being created let's
+        // queue up all of the event data and fire it off on the instance when it's ready
+        var cmpMeta = plt.getComponentMeta(elm);
+        var listeners = cmpMeta.listenersMeta;
         if (listeners) {
             for (var i = 0; i < listeners.length; i++) {
                 var listener = listeners[i];
-                if (listener.eventEnabled !== false) {
-                    (elm._listeners = elm._listeners || {})[listener.eventName] = addEventListener(plt, elm, listener.eventName, instance[listener.eventMethodName].bind(instance), listener);
-                }
+                if (listener.eventDisabled) continue;
+                (elm._listeners = elm._listeners || {})[listener.eventName] = addEventListener(plt, elm, listener.eventName, createListenerCallback(elm, listener.eventMethodName), listener.eventCapture, listener.eventPassive);
             }
+        }
+    }
+    function createListenerCallback(elm, eventMethodName) {
+        // create the function that gets called when the element receives
+        // an event which it should be listening for
+        return function onEvent(ev) {
+            if (elm.$instance) {
+                // instance is ready, let's call it's member method for this event
+                elm.$instance[eventMethodName](ev);
+            } else {
+                // instance is not ready!!
+                // let's queue up this event data and replay it later
+                // when the instance is ready
+                (elm._queuedEvents = elm._queuedEvents || []).push(eventMethodName, ev);
+            }
+        };
+    }
+    function replayQueuedEventsOnInstance(elm) {
+        // the element has an instance now and
+        // we already added the event listeners to the element
+        var queuedEvents = elm._queuedEvents;
+        if (queuedEvents) {
+            // events may have already fired before the instance was even ready
+            // now that the instance is ready, let's replay all of the events that
+            // we queued up earlier that were originally meant for the instance
+            for (var i = 0; i < queuedEvents.length; i += 2) {
+                // data was added in sets of two
+                // first item the eventMethodName
+                // second item is the event data
+                // take a look at initElementListener()
+                elm.$instance[queuedEvents[i]](queuedEvents[i + 1]);
+            }
+            // no longer need this data, be gone with you
+            delete elm._queuedEvents;
         }
     }
     function enableEventListener(plt, instance, eventName, shouldEnable, attachTo) {
@@ -157,7 +198,7 @@ https://github.com/WebReflection/document-register-element
                     if (listener.eventName === eventName) {
                         if (shouldEnable && !deregisterFns[eventName]) {
                             var attachToEventName = attachTo ? attachTo + ':' + eventName : eventName;
-                            deregisterFns[eventName] = addEventListener(plt, elm, attachToEventName, instance[listener.eventMethodName].bind(instance), listener);
+                            deregisterFns[eventName] = addEventListener(plt, elm, attachToEventName, createListenerCallback(elm, listener.eventMethodName), listener.eventCapture, listener.eventPassive);
                         } else if (!shouldEnable && deregisterFns[eventName]) {
                             deregisterFns[eventName]();
                             delete elm._listeners[eventName];
@@ -168,7 +209,9 @@ https://github.com/WebReflection/document-register-element
             }
         }
     }
-    function addEventListener(plt, elm, eventName, userEventListener, opts) {
+    function addEventListener(plt, elm, eventName, listenerCallback, useCapture, usePassive) {
+        // depending on the event name, we could actually be
+        // attaching this element to something like the document or window
         var splt = eventName.split(':');
         if (elm && splt.length > 1) {
             // document:mousemove
@@ -178,31 +221,50 @@ https://github.com/WebReflection/document-register-element
             eventName = splt[1];
         }
         if (!elm) {
+            // something's up, let's not continue and just return a noop()
             return noop;
         }
+        // test to see if we're looking for an exact keycode
         splt = eventName.split('.');
         var testKeyCode = 0;
         if (splt.length > 1) {
+            // looks like this listener is also looking for a keycode
             // keyup.enter
             eventName = splt[0];
             testKeyCode = KEY_CODE_MAP[splt[1]];
         }
-        var eventListener = function (ev) {
+        // create the our internal event listener callback we'll be firing off
+        // within it is the user's event listener callback and some other goodies
+        function eventListener(ev) {
             if (testKeyCode > 0 && ev.keyCode !== testKeyCode) {
-                // we're looking for a specific keycode but this wasn't it
+                // we're looking for a specific keycode
+                // but the one we were given wasn't the right keycode
                 return;
             }
-            // fire the component's event listener callback
-            userEventListener(ev);
-            // test if this is the user's interaction
-            if (isUserInteraction(eventName)) {
-                // so turns out that it's very important to flush the queue now
-                // this way the app immediately reflects whatever the user just did
-                plt.queue.flush();
+            // fire the user's component event listener callback
+            // if the instance isn't ready yet, this listener is already
+            // set to handle that and re-queue the update when it is ready
+            listenerCallback(ev);
+            if (elm.$instance) {
+                // only queue an update if this element itself is a host element
+                // and only queue an update if host element's instance is ready
+                // once its instance has been created, it'll then queue the update again
+                // queue it up for an update which then runs a re-render
+                elm._queueUpdate();
+                // test if this is the user's interaction
+                if (isUserInteraction(eventName)) {
+                    // so turns out that it's very important to flush the queue NOW
+                    // this way the app immediately reflects whatever the user just did
+                    plt.queue.flush();
+                }
             }
-        };
-        var eventListenerOpts = plt.getEventOptions(opts);
+        }
+        // get our event listener options
+        // mainly this is used to set passive events if this browser supports it
+        var eventListenerOpts = plt.getEventOptions(useCapture, usePassive);
+        // ok, good to go, let's add the actual listener to the dom element
         elm.addEventListener(eventName, eventListener, eventListenerOpts);
+        // return a function which is used to remove this very same listener
         return function removeListener() {
             if (elm) {
                 elm.removeEventListener(eventName, eventListener, eventListenerOpts);
@@ -226,23 +288,6 @@ https://github.com/WebReflection/document-register-element
                 deregisterFns[eventNames[i]]();
             }
             elm._listeners = null;
-        }
-    }
-    function initComponentEvents(plt, componentEvents, instance) {
-        if (componentEvents) {
-            componentEvents.forEach(function (eventMeta) {
-                instance[eventMeta.eventMethodName] = {
-                    emit: function eventEmitter(data) {
-                        var eventData = {
-                            bubbles: eventMeta.eventBubbles,
-                            composed: eventMeta.eventComposed,
-                            cancelable: eventMeta.eventCancelable,
-                            detail: data
-                        };
-                        plt.emitEvent(instance.__el, eventMeta.eventName, eventData);
-                    }
-                };
-            });
         }
     }
 
@@ -1175,17 +1220,31 @@ https://github.com/WebReflection/document-register-element
         if (cmpRegistryData[4]) {
             // parse prop meta
             for (var i = 0; i < cmpRegistryData[4].length; i++) {
-                var data = cmpRegistryData[4][i];
+                var d = cmpRegistryData[4][i];
                 cmpMeta.propsMeta.push({
-                    propName: data[0],
-                    attribName: data[1] === ATTR_LOWER_CASE ? data[0].toLowerCase() : toDashCase(data[0]),
-                    propType: data[2],
-                    isStateful: !!data[3]
+                    propName: d[0],
+                    attribName: d[1] === ATTR_LOWER_CASE ? d[0].toLowerCase() : toDashCase(d[0]),
+                    propType: d[2],
+                    isStateful: !!d[3]
+                });
+            }
+        }
+        if (cmpRegistryData[5]) {
+            // parse listener meta
+            cmpMeta.listenersMeta = [];
+            for (i = 0; i < cmpRegistryData[5].length; i++) {
+                d = cmpRegistryData[5][i];
+                cmpMeta.listenersMeta.push({
+                    eventName: d[0],
+                    eventMethodName: d[1],
+                    eventDisabled: !!d[2],
+                    eventPassive: !!d[3],
+                    eventCapture: !!d[4]
                 });
             }
         }
         // bundle load priority
-        cmpMeta.loadPriority = cmpRegistryData[5];
+        cmpMeta.loadPriority = cmpRegistryData[6];
         return registry[cmpMeta.tagNameMeta] = cmpMeta;
     }
     function parseComponentMeta(registry, moduleImports, cmpMetaData) {
@@ -1206,21 +1265,21 @@ https://github.com/WebReflection/document-register-element
                     eventName: data[1],
                     eventCapture: !!data[2],
                     eventPassive: !!data[3],
-                    eventEnabled: !!data[4]
+                    eventDisabled: !!data[4]
                 });
             }
         }
         // component states
-        cmpMeta.statesMeta = cmpMetaData[3];
+        cmpMeta.statesMeta = cmpMetaData[2];
         // component instance prop WILL change methods
-        cmpMeta.propsWillChangeMeta = cmpMetaData[4];
+        cmpMeta.propsWillChangeMeta = cmpMetaData[3];
         // component instance prop DID change methods
-        cmpMeta.propsDidChangeMeta = cmpMetaData[5];
+        cmpMeta.propsDidChangeMeta = cmpMetaData[4];
         // component instance events
-        if (cmpMetaData[6]) {
+        if (cmpMetaData[5]) {
             cmpMeta.eventsMeta = [];
-            for (i = 0; i < cmpMetaData[6].length; i++) {
-                data = cmpMetaData[6][i];
+            for (i = 0; i < cmpMetaData[5].length; i++) {
+                data = cmpMetaData[5][i];
                 cmpMeta.eventsMeta.push({
                     eventName: data[0],
                     eventMethodName: data[1],
@@ -1231,12 +1290,12 @@ https://github.com/WebReflection/document-register-element
             }
         }
         // component methods
-        cmpMeta.methodsMeta = cmpMetaData[7];
+        cmpMeta.methodsMeta = cmpMetaData[6];
         // member name which the component instance should
         // use when referencing the host element
-        cmpMeta.hostElementMember = cmpMetaData[8];
+        cmpMeta.hostElementMember = cmpMetaData[7];
         // is shadow
-        cmpMeta.isShadowMeta = !!cmpMetaData[9];
+        cmpMeta.isShadowMeta = !!cmpMetaData[8];
     }
     function parsePropertyValue(propType, propValue) {
         // ensure this value is of the correct prop type
@@ -1282,6 +1341,10 @@ https://github.com/WebReflection/document-register-element
             elm._hasConnected = true;
             // if somehow this node was reused, ensure we've removed this property
             delete elm._hasDestroyed;
+            // initialize our event listeners on the host element
+            // we do this now so that we can listening to events that may
+            // have fired even before the instance is ready
+            initElementListeners(plt, elm);
             // add to the queue to load the bundle
             // it's important to have an async tick in here so we can
             // ensure the "mode" attribute has been added to the element
@@ -1360,6 +1423,24 @@ https://github.com/WebReflection/document-register-element
             // and reset values incase this node gets reused somehow
             // (possible that it got disconnected, but the node was reused)
             elm._root = elm._vnode = elm._ancestorHostElement = elm._activelyLoadingChildren = elm._hasConnected = elm._isQueuedForUpdate = elm._hasLoaded = null;
+        }
+    }
+
+    function initEventEmitters(plt, componentEvents, instance) {
+        if (componentEvents) {
+            componentEvents.forEach(function (eventMeta) {
+                instance[eventMeta.eventMethodName] = {
+                    emit: function eventEmitter(data) {
+                        var eventData = {
+                            bubbles: eventMeta.eventBubbles,
+                            composed: eventMeta.eventComposed,
+                            cancelable: eventMeta.eventCancelable,
+                            detail: data
+                        };
+                        plt.emitEvent(instance.__el, eventMeta.eventName, eventData);
+                    }
+                };
+            });
         }
     }
 
@@ -1611,6 +1692,8 @@ https://github.com/WebReflection/document-register-element
     }
 
     function initHostConstructor(plt, HostElementConstructor) {
+        // let's wire up our functions to the host element's prototype
+        // we can also inject our platform into each one that needs that api
         HostElementConstructor.connectedCallback = function () {
             connectedCallback(plt, this);
         };
@@ -1624,7 +1707,7 @@ https://github.com/WebReflection/document-register-element
             queueUpdate(plt, this);
         };
         HostElementConstructor._initLoad = function () {
-            initLoad(plt, this);
+            initLoad(this);
         };
         HostElementConstructor._render = function (isInitialRender) {
             render(plt, this, isInitialRender);
@@ -1651,13 +1734,16 @@ https://github.com/WebReflection/document-register-element
         initProxy(plt, elm, instance, cmpMeta);
         // add each of the event emitters which wire up instance methods
         // to fire off dom events from the host element
-        initComponentEvents(plt, cmpMeta.eventsMeta, instance);
+        initEventEmitters(plt, cmpMeta.eventsMeta, instance);
+        // reply any event listeners on the instance that were queued up between the time
+        // the element was connected and before the instance was ready
+        replayQueuedEventsOnInstance(elm);
         // fire off the user's componentWillLoad method (if one was provided)
         // componentWillLoad only runs ONCE, after instance's element has been
         // assigned as the host element, but BEFORE render() has been called
         instance.componentWillLoad && instance.componentWillLoad();
     }
-    function initLoad(plt, elm) {
+    function initLoad(elm) {
         var instance = elm.$instance;
         // it's possible that we've already decided to destroy this element
         // check if this element has any actively loading child elements
@@ -1666,8 +1752,6 @@ https://github.com/WebReflection/document-register-element
             // and it does not have any child elements that are still loading
             // ensure we remove any child references cuz it doesn't matter at this point
             elm._activelyLoadingChildren = null;
-            // the element is within the DOM now, so let's attach the event listeners
-            attachListeners(plt, plt.getComponentMeta(elm).listenersMeta, elm, instance);
             // sweet, this particular element is good to go
             // all of this element's children have loaded (if any)
             elm._hasLoaded = true;
@@ -1716,7 +1800,7 @@ https://github.com/WebReflection/document-register-element
         // initialize Core global object
         Core.dom = createDomControllerClient(win, now);
         Core.addListener = function addListener(elm, eventName, cb, opts) {
-            return addEventListener(plt, elm, eventName, cb, opts);
+            return addEventListener(plt, elm, eventName, cb, opts.capture, opts.passive);
         };
         Core.enableListener = function enableListener(instance, eventName, enabled, attachTo) {
             enableEventListener(plt, instance, eventName, enabled, attachTo);
@@ -1886,11 +1970,11 @@ https://github.com/WebReflection/document-register-element
                 }
             }));
         } catch (e) {}
-        function getEventOptions(opts) {
+        function getEventOptions(useCapture, usePassive) {
             return supportsEventOptions ? {
-                capture: !!(opts && opts.capture),
-                passive: !(opts && opts.passive === false)
-            } : !!(opts && opts.capture);
+                capture: !!useCapture,
+                passive: !!usePassive
+            } : !!useCapture;
         }
         return plt;
     }

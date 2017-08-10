@@ -126,10 +126,7 @@ exports['FIBER-TRIANGLE'] = FiberTriangle;
 /** fiber-dot: [1] host **/
 {},
 
-/** fiber-dot: [2] listeners **/
-0 /* no listeners */,
-
-/** fiber-dot: [3] states **/
+/** fiber-dot: [2] states **/
 ['hover']
 
 ],
