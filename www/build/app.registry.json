@@ -3,67 +3,65 @@
   "components": [
     [
       "FIBER-DEMO",
-      "fiber-demo.fiber-dot.fiber-triangle",
-      0,
+      "fiber-demo",
       0,
       [
         [
           "elapsed",
-          0,
+          1,
           2
         ]
       ]
     ],
     [
       "FIBER-DOT",
-      "fiber-demo.fiber-dot.fiber-triangle",
-      0,
+      "fiber-demo",
       0,
       [
         [
           "size",
-          0,
+          1,
           2
         ],
         [
-          "text"
+          "text",
+          1
         ],
         [
           "x",
-          0,
+          1,
           2
         ],
         [
           "y",
-          0,
+          1,
           2
         ]
       ]
     ],
     [
       "FIBER-TRIANGLE",
-      "fiber-demo.fiber-dot.fiber-triangle",
-      0,
+      "fiber-demo",
       0,
       [
         [
           "s",
-          0,
+          1,
           2
         ],
         [
           "seconds",
-          0,
+          1,
           2
         ],
         [
           "x",
-          0,
+          1,
           2
         ],
         [
           "y",
-          0,
+          1,
           2
         ]
       ]

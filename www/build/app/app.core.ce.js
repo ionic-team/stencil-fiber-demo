@@ -1,17 +1,17 @@
 /*! Built with http://stenciljs.com */
 
-(function(Core,appNamespace,publicPath){"use strict";
-/*! document-register-element, 1.5.0
+(function(Context,appNamespace,publicPath){"use strict";
+/*! document-register-element, 1.8.0
 https://github.com/WebReflection/document-register-element
 (C) Andrea Giammarchi - @WebReflection - Mit Style License */
-(function(e,t){"use strict";function Ht(){var e=wt.splice(0,wt.length);Et=0;while(e.length)e.shift().call(null,e.shift())}function Bt(e,t){for(var n=0,r=e.length;n<r;n++)Jt(e[n],t)}function jt(e){for(var t=0,n=e.length,r;t<n;t++)r=e[t],Pt(r,A[It(r)])}function Ft(e){return function(t){ut(t)&&(Jt(t,e),O.length&&Bt(t.querySelectorAll(O),e))}}function It(e){var t=ht.call(e,"is"),n=e.nodeName.toUpperCase(),r=_.call(L,t?N+t.toUpperCase():T+n);return t&&-1<r&&!qt(n,t)?-1:r}function qt(e,t){return-1<O.indexOf(e+'[is="'+t+'"]')}function Rt(e){var t=e.currentTarget,n=e.attrChange,r=e.attrName,i=e.target,s=e[y]||2,o=e[w]||3;kt&&(!i||i===t)&&t[h]&&r!=="style"&&(e.prevValue!==e.newValue||e.newValue===""&&(n===s||n===o))&&t[h](r,n===s?null:e.prevValue,n===o?null:e.newValue)}function Ut(e){var t=Ft(e);return function(e){wt.push(t,e.target),Et&&clearTimeout(Et),Et=setTimeout(Ht,1)}}function zt(e){Ct&&(Ct=!1,e.currentTarget.removeEventListener(S,zt)),O.length&&Bt((e.target||n).querySelectorAll(O),e.detail===l?l:a),st&&Vt()}function Wt(e,t){var n=this;vt.call(n,e,t),Lt.call(n,{target:n})}function Xt(e,t){nt(e,t),Mt?Mt.observe(e,yt):(Nt&&(e.setAttribute=Wt,e[o]=Ot(e),e[u](x,Lt)),e[u](E,Rt)),e[m]&&kt&&(e.created=!0,e[m](),e.created=!1)}function Vt(){for(var e,t=0,n=at.length;t<n;t++)e=at[t],M.contains(e)||(n--,at.splice(t--,1),Jt(e,l))}function $t(e){throw new Error("A "+e+" type is already registered")}function Jt(e,t){var n,r=It(e);-1<r&&(Dt(e,A[r]),r=0,t===a&&!e[a]?(e[l]=!1,e[a]=!0,r=1,st&&_.call(at,e)<0&&at.push(e)):t===l&&!e[l]&&(e[a]=!1,e[l]=!0,r=1),r&&(n=e[t+f])&&n.call(e))}function Kt(){}function Qt(e,t,r){var i=r&&r[c]||"",o=t.prototype,u=tt(o),a=t.observedAttributes||j,f={prototype:u};ot(u,m,{value:function(){if(Q)Q=!1;else if(!this[W]){this[W]=!0,new t(this),o[m]&&o[m].call(this);var e=G[Z.get(t)];(!V||e.create.length>1)&&Zt(this)}}}),ot(u,h,{value:function(e){-1<_.call(a,e)&&o[h].apply(this,arguments)}}),o[d]&&ot(u,p,{value:o[d]}),o[v]&&ot(u,g,{value:o[v]}),i&&(f[c]=i),e=e.toUpperCase(),G[e]={constructor:t,create:i?[i,et(e)]:[e]},Z.set(t,e),n[s](e.toLowerCase(),f),en(e),Y[e].r()}function Gt(e){var t=G[e.toUpperCase()];return t&&t.constructor}function Yt(e){return typeof e=="string"?e:e&&e.is||""}function Zt(e){var t=e[h],n=t?e.attributes:j,r=n.length,i;while(r--)i=n[r],t.call(e,i.name||i.nodeName,null,i.value||i.nodeValue)}function en(e){return e=e.toUpperCase(),e in Y||(Y[e]={},Y[e].p=new K(function(t){Y[e].r=t})),Y[e].p}function tn(){X&&delete e.customElements,B(e,"customElements",{configurable:!0,value:new Kt}),B(e,"CustomElementRegistry",{configurable:!0,value:Kt});for(var t=function(t){var r=e[t];if(r){e[t]=function(t){var i,s;return t||(t=this),t[W]||(Q=!0,i=G[Z.get(t.constructor)],s=V&&i.create.length===1,t=s?Reflect.construct(r,j,i.constructor):n.createElement.apply(n,i.create),t[W]=!0,Q=!1,s||Zt(t)),t},e[t].prototype=r.prototype;try{r.prototype.constructor=e[t]}catch(i){z=!0,B(r,W,{value:e[t]})}}},r=i.get(/^HTML[A-Z]*[a-z]/),o=r.length;o--;t(r[o]));n.createElement=function(e,t){var n=Yt(t);return n?gt.call(this,e,et(n)):gt.call(this,e)},St||(Tt=!0,n[s](""))}var n=e.document,r=e.Object,i=function(e){var t=/^[A-Z]+[a-z]/,n=function(e){var t=[],n;for(n in s)e.test(n)&&t.push(n);return t},i=function(e,t){t=t.toLowerCase(),t in s||(s[e]=(s[e]||[]).concat(t),s[t]=s[t.toUpperCase()]=e)},s=(r.create||r)(null),o={},u,a,f,l;for(a in e)for(l in e[a]){f=e[a][l],s[l]=f;for(u=0;u<f.length;u++)s[f[u].toLowerCase()]=s[f[u].toUpperCase()]=l}return o.get=function(r){return typeof r=="string"?s[r]||(t.test(r)?[]:""):n(r)},o.set=function(n,r){return t.test(n)?i(n,r):i(r,n),o},o}({collections:{HTMLAllCollection:["all"],HTMLCollection:["forms"],HTMLFormControlsCollection:["elements"],HTMLOptionsCollection:["options"]},elements:{Element:["element"],HTMLAnchorElement:["a"],HTMLAppletElement:["applet"],HTMLAreaElement:["area"],HTMLAttachmentElement:["attachment"],HTMLAudioElement:["audio"],HTMLBRElement:["br"],HTMLBaseElement:["base"],HTMLBodyElement:["body"],HTMLButtonElement:["button"],HTMLCanvasElement:["canvas"],HTMLContentElement:["content"],HTMLDListElement:["dl"],HTMLDataElement:["data"],HTMLDataListElement:["datalist"],HTMLDetailsElement:["details"],HTMLDialogElement:["dialog"],HTMLDirectoryElement:["dir"],HTMLDivElement:["div"],HTMLDocument:["document"],HTMLElement:["element","abbr","address","article","aside","b","bdi","bdo","cite","code","command","dd","dfn","dt","em","figcaption","figure","footer","header","i","kbd","mark","nav","noscript","rp","rt","ruby","s","samp","section","small","strong","sub","summary","sup","u","var","wbr"],HTMLEmbedElement:["embed"],HTMLFieldSetElement:["fieldset"],HTMLFontElement:["font"],HTMLFormElement:["form"],HTMLFrameElement:["frame"],HTMLFrameSetElement:["frameset"],HTMLHRElement:["hr"],HTMLHeadElement:["head"],HTMLHeadingElement:["h1","h2","h3","h4","h5","h6"],HTMLHtmlElement:["html"],HTMLIFrameElement:["iframe"],HTMLImageElement:["img"],HTMLInputElement:["input"],HTMLKeygenElement:["keygen"],HTMLLIElement:["li"],HTMLLabelElement:["label"],HTMLLegendElement:["legend"],HTMLLinkElement:["link"],HTMLMapElement:["map"],HTMLMarqueeElement:["marquee"],HTMLMediaElement:["media"],HTMLMenuElement:["menu"],HTMLMenuItemElement:["menuitem"],HTMLMetaElement:["meta"],HTMLMeterElement:["meter"],HTMLModElement:["del","ins"],HTMLOListElement:["ol"],HTMLObjectElement:["object"],HTMLOptGroupElement:["optgroup"],HTMLOptionElement:["option"],HTMLOutputElement:["output"],HTMLParagraphElement:["p"],HTMLParamElement:["param"],HTMLPictureElement:["picture"],HTMLPreElement:["pre"],HTMLProgressElement:["progress"],HTMLQuoteElement:["blockquote","q","quote"],HTMLScriptElement:["script"],HTMLSelectElement:["select"],HTMLShadowElement:["shadow"],HTMLSlotElement:["slot"],HTMLSourceElement:["source"],HTMLSpanElement:["span"],HTMLStyleElement:["style"],HTMLTableCaptionElement:["caption"],HTMLTableCellElement:["td","th"],HTMLTableColElement:["col","colgroup"],HTMLTableElement:["table"],HTMLTableRowElement:["tr"],HTMLTableSectionElement:["thead","tbody","tfoot"],HTMLTemplateElement:["template"],HTMLTextAreaElement:["textarea"],HTMLTimeElement:["time"],HTMLTitleElement:["title"],HTMLTrackElement:["track"],HTMLUListElement:["ul"],HTMLUnknownElement:["unknown","vhgroupv","vkeygen"],HTMLVideoElement:["video"]},nodes:{Attr:["node"],Audio:["audio"],CDATASection:["node"],CharacterData:["node"],Comment:["#comment"],Document:["#document"],DocumentFragment:["#document-fragment"],DocumentType:["node"],HTMLDocument:["#document"],Image:["img"],Option:["option"],ProcessingInstruction:["node"],ShadowRoot:["#shadow-root"],Text:["#text"],XMLDocument:["xml"]}});t||(t="auto");var s="registerElement",o="__"+s+(e.Math.random()*1e5>>0),u="addEventListener",a="attached",f="Callback",l="detached",c="extends",h="attributeChanged"+f,p=a+f,d="connected"+f,v="disconnected"+f,m="created"+f,g=l+f,y="ADDITION",b="MODIFICATION",w="REMOVAL",E="DOMAttrModified",S="DOMContentLoaded",x="DOMSubtreeModified",T="<",N="=",C=/^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+$/,k=["ANNOTATION-XML","COLOR-PROFILE","FONT-FACE","FONT-FACE-SRC","FONT-FACE-URI","FONT-FACE-FORMAT","FONT-FACE-NAME","MISSING-GLYPH"],L=[],A=[],O="",M=n.documentElement,_=L.indexOf||function(e){for(var t=this.length;t--&&this[t]!==e;);return t},D=r.prototype,P=D.hasOwnProperty,H=D.isPrototypeOf,B=r.defineProperty,j=[],F=r.getOwnPropertyDescriptor,I=r.getOwnPropertyNames,q=r.getPrototypeOf,R=r.setPrototypeOf,U=!!r.__proto__,z=!1,W="__dreCEv1",X=e.customElements,V=t!=="force"&&!!(X&&X.define&&X.get&&X.whenDefined),$=r.create||r,J=e.Map||function(){var t=[],n=[],r;return{get:function(e){return n[_.call(t,e)]},set:function(e,i){r=_.call(t,e),r<0?n[t.push(e)-1]=i:n[r]=i}}},K=e.Promise||function(e){function i(e){n=!0;while(t.length)t.shift()(e)}var t=[],n=!1,r={"catch":function(){return r},then:function(e){return t.push(e),n&&setTimeout(i,1),r}};return e(i),r},Q=!1,G=$(null),Y=$(null),Z=new J,et=function(e){return e.toLowerCase()},tt=r.create||function sn(e){return e?(sn.prototype=e,new sn):this},nt=R||(U?function(e,t){return e.__proto__=t,e}:I&&F?function(){function e(e,t){for(var n,r=I(t),i=0,s=r.length;i<s;i++)n=r[i],P.call(e,n)||B(e,n,F(t,n))}return function(t,n){do e(t,n);while((n=q(n))&&!H.call(n,t));return t}}():function(e,t){for(var n in t)e[n]=t[n];return e}),rt=e.MutationObserver||e.WebKitMutationObserver,it=(e.HTMLElement||e.Element||e.Node).prototype,st=!H.call(it,M),ot=st?function(e,t,n){return e[t]=n.value,e}:B,ut=st?function(e){return e.nodeType===1}:function(e){return H.call(it,e)},at=st&&[],ft=it.attachShadow,lt=it.cloneNode,ct=it.dispatchEvent,ht=it.getAttribute,pt=it.hasAttribute,dt=it.removeAttribute,vt=it.setAttribute,mt=n.createElement,gt=mt,yt=rt&&{attributes:!0,characterData:!0,attributeOldValue:!0},bt=rt||function(e){Nt=!1,M.removeEventListener(E,bt)},wt,Et=0,St=s in n,xt=!0,Tt=!1,Nt=!0,Ct=!0,kt=!0,Lt,At,Ot,Mt,_t,Dt,Pt;St||(R||U?(Dt=function(e,t){H.call(t,e)||Xt(e,t)},Pt=Xt):(Dt=function(e,t){e[o]||(e[o]=r(!0),Xt(e,t))},Pt=Dt),st?(Nt=!1,function(){var e=F(it,u),t=e.value,n=function(e){var t=new CustomEvent(E,{bubbles:!0});t.attrName=e,t.prevValue=ht.call(this,e),t.newValue=null,t[w]=t.attrChange=2,dt.call(this,e),ct.call(this,t)},r=function(e,t){var n=pt.call(this,e),r=n&&ht.call(this,e),i=new CustomEvent(E,{bubbles:!0});vt.call(this,e,t),i.attrName=e,i.prevValue=n?r:null,i.newValue=t,n?i[b]=i.attrChange=1:i[y]=i.attrChange=0,ct.call(this,i)},i=function(e){var t=e.currentTarget,n=t[o],r=e.propertyName,i;n.hasOwnProperty(r)&&(n=n[r],i=new CustomEvent(E,{bubbles:!0}),i.attrName=n.name,i.prevValue=n.value||null,i.newValue=n.value=t[r]||null,i.prevValue==null?i[y]=i.attrChange=0:i[b]=i.attrChange=1,ct.call(t,i))};e.value=function(e,s,u){e===E&&this[h]&&this.setAttribute!==r&&(this[o]={className:{name:"class",value:this.className}},this.setAttribute=r,this.removeAttribute=n,t.call(this,"propertychange",i)),t.call(this,e,s,u)},B(it,u,e)}()):rt||(M[u](E,bt),M.setAttribute(o,1),M.removeAttribute(o),Nt&&(Lt=function(e){var t=this,n,r,i;if(t===e.target){n=t[o],t[o]=r=Ot(t);for(i in r){if(!(i in n))return At(0,t,i,n[i],r[i],y);if(r[i]!==n[i])return At(1,t,i,n[i],r[i],b)}for(i in n)if(!(i in r))return At(2,t,i,n[i],r[i],w)}},At=function(e,t,n,r,i,s){var o={attrChange:e,currentTarget:t,attrName:n,prevValue:r,newValue:i};o[s]=e,Rt(o)},Ot=function(e){for(var t,n,r={},i=e.attributes,s=0,o=i.length;s<o;s++)t=i[s],n=t.name,n!=="setAttribute"&&(r[n]=t.value);return r})),n[s]=function(t,r){p=t.toUpperCase(),xt&&(xt=!1,rt?(Mt=function(e,t){function n(e,t){for(var n=0,r=e.length;n<r;t(e[n++]));}return new rt(function(r){for(var i,s,o,u=0,a=r.length;u<a;u++)i=r[u],i.type==="childList"?(n(i.addedNodes,e),n(i.removedNodes,t)):(s=i.target,kt&&s[h]&&i.attributeName!=="style"&&(o=ht.call(s,i.attributeName),o!==i.oldValue&&s[h](i.attributeName,i.oldValue,o)))})}(Ft(a),Ft(l)),_t=function(e){return Mt.observe(e,{childList:!0,subtree:!0}),e},_t(n),ft&&(it.attachShadow=function(){return _t(ft.apply(this,arguments))})):(wt=[],n[u]("DOMNodeInserted",Ut(a)),n[u]("DOMNodeRemoved",Ut(l))),n[u](S,zt),n[u]("readystatechange",zt),it.cloneNode=function(e){var t=lt.call(this,!!e),n=It(t);return-1<n&&Pt(t,A[n]),e&&O.length&&jt(t.querySelectorAll(O)),t});if(Tt)return Tt=!1;-2<_.call(L,N+p)+_.call(L,T+p)&&$t(t);if(!C.test(p)||-1<_.call(k,p))throw new Error("The type "+t+" is invalid");var i=function(){return o?n.createElement(f,p):n.createElement(f)},s=r||D,o=P.call(s,c),f=o?r[c].toUpperCase():p,p,d;return o&&-1<_.call(L,T+f)&&$t(f),d=L.push((o?N:T)+p)-1,O=O.concat(O.length?",":"",o?f+'[is="'+t.toLowerCase()+'"]':f),i.prototype=A[d]=P.call(s,"prototype")?s.prototype:tt(it),O.length&&Bt(n.querySelectorAll(O),a),i},n.createElement=gt=function(e,t){var r=Yt(t),i=r?mt.call(n,e,et(r)):mt.call(n,e),s=""+e,o=_.call(L,(r?N:T)+(r||s).toUpperCase()),u=-1<o;return r&&(i.setAttribute("is",r=r.toLowerCase()),u&&(u=qt(s.toUpperCase(),r))),kt=!n.createElement.innerHTMLHelper,u&&Pt(i,A[o]),i}),Kt.prototype={constructor:Kt,define:V?function(e,t,n){if(n)Qt(e,t,n);else{var r=e.toUpperCase();G[r]={constructor:t,create:[r]},Z.set(t,r),X.define(e,t)}}:Qt,get:V?function(e){return X.get(e)||Gt(e)}:Gt,whenDefined:V?function(e){return K.race([X.whenDefined(e),en(e)])}:en};if(!X||t==="force")tn();else try{(function(t,r,i){r[c]="a",t.prototype=tt(HTMLAnchorElement.prototype),t.prototype.constructor=t,e.customElements.define(i,t,r);if(ht.call(n.createElement("a",{is:i}),"is")!==i||V&&ht.call(new t,"is")!==i)throw r})(function on(){return Reflect.construct(HTMLAnchorElement,[],on)},{},"document-register-element-a")}catch(nn){tn()}try{mt.call(n,"a","a")}catch(rn){et=function(e){return{is:e.toLowerCase()}}}})(window);
+(function(e,t){"use strict";function Ht(){var e=wt.splice(0,wt.length);Et=0;while(e.length)e.shift().call(null,e.shift())}function Bt(e,t){for(var n=0,r=e.length;n<r;n++)Jt(e[n],t)}function jt(e){for(var t=0,n=e.length,r;t<n;t++)r=e[t],Pt(r,A[It(r)])}function Ft(e){return function(t){ut(t)&&(Jt(t,e),O.length&&Bt(t.querySelectorAll(O),e))}}function It(e){var t=ht.call(e,"is"),n=e.nodeName.toUpperCase(),r=_.call(L,t?N+t.toUpperCase():T+n);return t&&-1<r&&!qt(n,t)?-1:r}function qt(e,t){return-1<O.indexOf(e+'[is="'+t+'"]')}function Rt(e){var t=e.currentTarget,n=e.attrChange,r=e.attrName,i=e.target,s=e[y]||2,o=e[w]||3;kt&&(!i||i===t)&&t[h]&&r!=="style"&&(e.prevValue!==e.newValue||e.newValue===""&&(n===s||n===o))&&t[h](r,n===s?null:e.prevValue,n===o?null:e.newValue)}function Ut(e){var t=Ft(e);return function(e){wt.push(t,e.target),Et&&clearTimeout(Et),Et=setTimeout(Ht,1)}}function zt(e){Ct&&(Ct=!1,e.currentTarget.removeEventListener(S,zt)),O.length&&Bt((e.target||n).querySelectorAll(O),e.detail===l?l:a),st&&Vt()}function Wt(e,t){var n=this;vt.call(n,e,t),Lt.call(n,{target:n})}function Xt(e,t){nt(e,t),Mt?Mt.observe(e,yt):(Nt&&(e.setAttribute=Wt,e[o]=Ot(e),e[u](x,Lt)),e[u](E,Rt)),e[m]&&kt&&(e.created=!0,e[m](),e.created=!1)}function Vt(){for(var e,t=0,n=at.length;t<n;t++)e=at[t],M.contains(e)||(n--,at.splice(t--,1),Jt(e,l))}function $t(e){throw new Error("A "+e+" type is already registered")}function Jt(e,t){var n,r=It(e),i;-1<r&&(Dt(e,A[r]),r=0,t===a&&!e[a]?(e[l]=!1,e[a]=!0,i="connected",r=1,st&&_.call(at,e)<0&&at.push(e)):t===l&&!e[l]&&(e[a]=!1,e[l]=!0,i="disconnected",r=1),r&&(n=e[t+f]||e[i+f])&&n.call(e))}function Kt(){}function Qt(e,t,r){var i=r&&r[c]||"",o=t.prototype,u=tt(o),a=t.observedAttributes||j,f={prototype:u};ot(u,m,{value:function(){if(Q)Q=!1;else if(!this[W]){this[W]=!0,new t(this),o[m]&&o[m].call(this);var e=G[Z.get(t)];(!V||e.create.length>1)&&Zt(this)}}}),ot(u,h,{value:function(e){-1<_.call(a,e)&&o[h].apply(this,arguments)}}),o[d]&&ot(u,p,{value:o[d]}),o[v]&&ot(u,g,{value:o[v]}),i&&(f[c]=i),e=e.toUpperCase(),G[e]={constructor:t,create:i?[i,et(e)]:[e]},Z.set(t,e),n[s](e.toLowerCase(),f),en(e),Y[e].r()}function Gt(e){var t=G[e.toUpperCase()];return t&&t.constructor}function Yt(e){return typeof e=="string"?e:e&&e.is||""}function Zt(e){var t=e[h],n=t?e.attributes:j,r=n.length,i;while(r--)i=n[r],t.call(e,i.name||i.nodeName,null,i.value||i.nodeValue)}function en(e){return e=e.toUpperCase(),e in Y||(Y[e]={},Y[e].p=new K(function(t){Y[e].r=t})),Y[e].p}function tn(){X&&delete e.customElements,B(e,"customElements",{configurable:!0,value:new Kt}),B(e,"CustomElementRegistry",{configurable:!0,value:Kt});for(var t=function(t){var r=e[t];if(r){e[t]=function(t){var i,s;return t||(t=this),t[W]||(Q=!0,i=G[Z.get(t.constructor)],s=V&&i.create.length===1,t=s?Reflect.construct(r,j,i.constructor):n.createElement.apply(n,i.create),t[W]=!0,Q=!1,s||Zt(t)),t},e[t].prototype=r.prototype;try{r.prototype.constructor=e[t]}catch(i){z=!0,B(r,W,{value:e[t]})}}},r=i.get(/^HTML[A-Z]*[a-z]/),o=r.length;o--;t(r[o]));n.createElement=function(e,t){var n=Yt(t);return n?gt.call(this,e,et(n)):gt.call(this,e)},St||(Tt=!0,n[s](""))}var n=e.document,r=e.Object,i=function(e){var t=/^[A-Z]+[a-z]/,n=function(e){var t=[],n;for(n in s)e.test(n)&&t.push(n);return t},i=function(e,t){t=t.toLowerCase(),t in s||(s[e]=(s[e]||[]).concat(t),s[t]=s[t.toUpperCase()]=e)},s=(r.create||r)(null),o={},u,a,f,l;for(a in e)for(l in e[a]){f=e[a][l],s[l]=f;for(u=0;u<f.length;u++)s[f[u].toLowerCase()]=s[f[u].toUpperCase()]=l}return o.get=function(r){return typeof r=="string"?s[r]||(t.test(r)?[]:""):n(r)},o.set=function(n,r){return t.test(n)?i(n,r):i(r,n),o},o}({collections:{HTMLAllCollection:["all"],HTMLCollection:["forms"],HTMLFormControlsCollection:["elements"],HTMLOptionsCollection:["options"]},elements:{Element:["element"],HTMLAnchorElement:["a"],HTMLAppletElement:["applet"],HTMLAreaElement:["area"],HTMLAttachmentElement:["attachment"],HTMLAudioElement:["audio"],HTMLBRElement:["br"],HTMLBaseElement:["base"],HTMLBodyElement:["body"],HTMLButtonElement:["button"],HTMLCanvasElement:["canvas"],HTMLContentElement:["content"],HTMLDListElement:["dl"],HTMLDataElement:["data"],HTMLDataListElement:["datalist"],HTMLDetailsElement:["details"],HTMLDialogElement:["dialog"],HTMLDirectoryElement:["dir"],HTMLDivElement:["div"],HTMLDocument:["document"],HTMLElement:["element","abbr","address","article","aside","b","bdi","bdo","cite","code","command","dd","dfn","dt","em","figcaption","figure","footer","header","i","kbd","mark","nav","noscript","rp","rt","ruby","s","samp","section","small","strong","sub","summary","sup","u","var","wbr"],HTMLEmbedElement:["embed"],HTMLFieldSetElement:["fieldset"],HTMLFontElement:["font"],HTMLFormElement:["form"],HTMLFrameElement:["frame"],HTMLFrameSetElement:["frameset"],HTMLHRElement:["hr"],HTMLHeadElement:["head"],HTMLHeadingElement:["h1","h2","h3","h4","h5","h6"],HTMLHtmlElement:["html"],HTMLIFrameElement:["iframe"],HTMLImageElement:["img"],HTMLInputElement:["input"],HTMLKeygenElement:["keygen"],HTMLLIElement:["li"],HTMLLabelElement:["label"],HTMLLegendElement:["legend"],HTMLLinkElement:["link"],HTMLMapElement:["map"],HTMLMarqueeElement:["marquee"],HTMLMediaElement:["media"],HTMLMenuElement:["menu"],HTMLMenuItemElement:["menuitem"],HTMLMetaElement:["meta"],HTMLMeterElement:["meter"],HTMLModElement:["del","ins"],HTMLOListElement:["ol"],HTMLObjectElement:["object"],HTMLOptGroupElement:["optgroup"],HTMLOptionElement:["option"],HTMLOutputElement:["output"],HTMLParagraphElement:["p"],HTMLParamElement:["param"],HTMLPictureElement:["picture"],HTMLPreElement:["pre"],HTMLProgressElement:["progress"],HTMLQuoteElement:["blockquote","q","quote"],HTMLScriptElement:["script"],HTMLSelectElement:["select"],HTMLShadowElement:["shadow"],HTMLSlotElement:["slot"],HTMLSourceElement:["source"],HTMLSpanElement:["span"],HTMLStyleElement:["style"],HTMLTableCaptionElement:["caption"],HTMLTableCellElement:["td","th"],HTMLTableColElement:["col","colgroup"],HTMLTableElement:["table"],HTMLTableRowElement:["tr"],HTMLTableSectionElement:["thead","tbody","tfoot"],HTMLTemplateElement:["template"],HTMLTextAreaElement:["textarea"],HTMLTimeElement:["time"],HTMLTitleElement:["title"],HTMLTrackElement:["track"],HTMLUListElement:["ul"],HTMLUnknownElement:["unknown","vhgroupv","vkeygen"],HTMLVideoElement:["video"]},nodes:{Attr:["node"],Audio:["audio"],CDATASection:["node"],CharacterData:["node"],Comment:["#comment"],Document:["#document"],DocumentFragment:["#document-fragment"],DocumentType:["node"],HTMLDocument:["#document"],Image:["img"],Option:["option"],ProcessingInstruction:["node"],ShadowRoot:["#shadow-root"],Text:["#text"],XMLDocument:["xml"]}});typeof t!="object"&&(t={type:t||"auto"});var s="registerElement",o="__"+s+(e.Math.random()*1e5>>0),u="addEventListener",a="attached",f="Callback",l="detached",c="extends",h="attributeChanged"+f,p=a+f,d="connected"+f,v="disconnected"+f,m="created"+f,g=l+f,y="ADDITION",b="MODIFICATION",w="REMOVAL",E="DOMAttrModified",S="DOMContentLoaded",x="DOMSubtreeModified",T="<",N="=",C=/^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+$/,k=["ANNOTATION-XML","COLOR-PROFILE","FONT-FACE","FONT-FACE-SRC","FONT-FACE-URI","FONT-FACE-FORMAT","FONT-FACE-NAME","MISSING-GLYPH"],L=[],A=[],O="",M=n.documentElement,_=L.indexOf||function(e){for(var t=this.length;t--&&this[t]!==e;);return t},D=r.prototype,P=D.hasOwnProperty,H=D.isPrototypeOf,B=r.defineProperty,j=[],F=r.getOwnPropertyDescriptor,I=r.getOwnPropertyNames,q=r.getPrototypeOf,R=r.setPrototypeOf,U=!!r.__proto__,z=!1,W="__dreCEv1",X=e.customElements,V=!/^force/.test(t.type)&&!!(X&&X.define&&X.get&&X.whenDefined),$=r.create||r,J=e.Map||function(){var t=[],n=[],r;return{get:function(e){return n[_.call(t,e)]},set:function(e,i){r=_.call(t,e),r<0?n[t.push(e)-1]=i:n[r]=i}}},K=e.Promise||function(e){function i(e){n=!0;while(t.length)t.shift()(e)}var t=[],n=!1,r={"catch":function(){return r},then:function(e){return t.push(e),n&&setTimeout(i,1),r}};return e(i),r},Q=!1,G=$(null),Y=$(null),Z=new J,et=function(e){return e.toLowerCase()},tt=r.create||function sn(e){return e?(sn.prototype=e,new sn):this},nt=R||(U?function(e,t){return e.__proto__=t,e}:I&&F?function(){function e(e,t){for(var n,r=I(t),i=0,s=r.length;i<s;i++)n=r[i],P.call(e,n)||B(e,n,F(t,n))}return function(t,n){do e(t,n);while((n=q(n))&&!H.call(n,t));return t}}():function(e,t){for(var n in t)e[n]=t[n];return e}),rt=e.MutationObserver||e.WebKitMutationObserver,it=(e.HTMLElement||e.Element||e.Node).prototype,st=!H.call(it,M),ot=st?function(e,t,n){return e[t]=n.value,e}:B,ut=st?function(e){return e.nodeType===1}:function(e){return H.call(it,e)},at=st&&[],ft=it.attachShadow,lt=it.cloneNode,ct=it.dispatchEvent,ht=it.getAttribute,pt=it.hasAttribute,dt=it.removeAttribute,vt=it.setAttribute,mt=n.createElement,gt=mt,yt=rt&&{attributes:!0,characterData:!0,attributeOldValue:!0},bt=rt||function(e){Nt=!1,M.removeEventListener(E,bt)},wt,Et=0,St=s in n&&!/^force-all/.test(t.type),xt=!0,Tt=!1,Nt=!0,Ct=!0,kt=!0,Lt,At,Ot,Mt,_t,Dt,Pt;St||(R||U?(Dt=function(e,t){H.call(t,e)||Xt(e,t)},Pt=Xt):(Dt=function(e,t){e[o]||(e[o]=r(!0),Xt(e,t))},Pt=Dt),st?(Nt=!1,function(){var e=F(it,u),t=e.value,n=function(e){var t=new CustomEvent(E,{bubbles:!0});t.attrName=e,t.prevValue=ht.call(this,e),t.newValue=null,t[w]=t.attrChange=2,dt.call(this,e),ct.call(this,t)},r=function(e,t){var n=pt.call(this,e),r=n&&ht.call(this,e),i=new CustomEvent(E,{bubbles:!0});vt.call(this,e,t),i.attrName=e,i.prevValue=n?r:null,i.newValue=t,n?i[b]=i.attrChange=1:i[y]=i.attrChange=0,ct.call(this,i)},i=function(e){var t=e.currentTarget,n=t[o],r=e.propertyName,i;n.hasOwnProperty(r)&&(n=n[r],i=new CustomEvent(E,{bubbles:!0}),i.attrName=n.name,i.prevValue=n.value||null,i.newValue=n.value=t[r]||null,i.prevValue==null?i[y]=i.attrChange=0:i[b]=i.attrChange=1,ct.call(t,i))};e.value=function(e,s,u){e===E&&this[h]&&this.setAttribute!==r&&(this[o]={className:{name:"class",value:this.className}},this.setAttribute=r,this.removeAttribute=n,t.call(this,"propertychange",i)),t.call(this,e,s,u)},B(it,u,e)}()):rt||(M[u](E,bt),M.setAttribute(o,1),M.removeAttribute(o),Nt&&(Lt=function(e){var t=this,n,r,i;if(t===e.target){n=t[o],t[o]=r=Ot(t);for(i in r){if(!(i in n))return At(0,t,i,n[i],r[i],y);if(r[i]!==n[i])return At(1,t,i,n[i],r[i],b)}for(i in n)if(!(i in r))return At(2,t,i,n[i],r[i],w)}},At=function(e,t,n,r,i,s){var o={attrChange:e,currentTarget:t,attrName:n,prevValue:r,newValue:i};o[s]=e,Rt(o)},Ot=function(e){for(var t,n,r={},i=e.attributes,s=0,o=i.length;s<o;s++)t=i[s],n=t.name,n!=="setAttribute"&&(r[n]=t.value);return r})),n[s]=function(t,r){p=t.toUpperCase(),xt&&(xt=!1,rt?(Mt=function(e,t){function n(e,t){for(var n=0,r=e.length;n<r;t(e[n++]));}return new rt(function(r){for(var i,s,o,u=0,a=r.length;u<a;u++)i=r[u],i.type==="childList"?(n(i.addedNodes,e),n(i.removedNodes,t)):(s=i.target,kt&&s[h]&&i.attributeName!=="style"&&(o=ht.call(s,i.attributeName),o!==i.oldValue&&s[h](i.attributeName,i.oldValue,o)))})}(Ft(a),Ft(l)),_t=function(e){return Mt.observe(e,{childList:!0,subtree:!0}),e},_t(n),ft&&(it.attachShadow=function(){return _t(ft.apply(this,arguments))})):(wt=[],n[u]("DOMNodeInserted",Ut(a)),n[u]("DOMNodeRemoved",Ut(l))),n[u](S,zt),n[u]("readystatechange",zt),it.cloneNode=function(e){var t=lt.call(this,!!e),n=It(t);return-1<n&&Pt(t,A[n]),e&&O.length&&jt(t.querySelectorAll(O)),t});if(Tt)return Tt=!1;-2<_.call(L,N+p)+_.call(L,T+p)&&$t(t);if(!C.test(p)||-1<_.call(k,p))throw new Error("The type "+t+" is invalid");var i=function(){return o?n.createElement(f,p):n.createElement(f)},s=r||D,o=P.call(s,c),f=o?r[c].toUpperCase():p,p,d;return o&&-1<_.call(L,T+f)&&$t(f),d=L.push((o?N:T)+p)-1,O=O.concat(O.length?",":"",o?f+'[is="'+t.toLowerCase()+'"]':f),i.prototype=A[d]=P.call(s,"prototype")?s.prototype:tt(it),O.length&&Bt(n.querySelectorAll(O),a),i},n.createElement=gt=function(e,t){var r=Yt(t),i=r?mt.call(n,e,et(r)):mt.call(n,e),s=""+e,o=_.call(L,(r?N:T)+(r||s).toUpperCase()),u=-1<o;return r&&(i.setAttribute("is",r=r.toLowerCase()),u&&(u=qt(s.toUpperCase(),r))),kt=!n.createElement.innerHTMLHelper,u&&Pt(i,A[o]),i}),Kt.prototype={constructor:Kt,define:V?function(e,t,n){if(n)Qt(e,t,n);else{var r=e.toUpperCase();G[r]={constructor:t,create:[r]},Z.set(t,r),X.define(e,t)}}:Qt,get:V?function(e){return X.get(e)||Gt(e)}:Gt,whenDefined:V?function(e){return K.race([X.whenDefined(e),en(e)])}:en};if(!X||/^force/.test(t.type))tn();else if(!t.noBuiltIn)try{(function(t,r,i){r[c]="a",t.prototype=tt(HTMLAnchorElement.prototype),t.prototype.constructor=t,e.customElements.define(i,t,r);if(ht.call(n.createElement("a",{is:i}),"is")!==i||V&&ht.call(new t,"is")!==i)throw r})(function on(){return Reflect.construct(HTMLAnchorElement,[],on)},{},"document-register-element-a")}catch(nn){tn()}if(!t.noBuiltIn)try{mt.call(n,"a","a")}catch(rn){et=function(e){return{is:e.toLowerCase()}}}})(window);
 
 
 /*! Built with http://stenciljs.com */
 
 
 
-(function (window, document, Core, appNamespace, publicPath) {
+(function (window, document, Context, appNamespace, publicPath) {
     "use strict";
 
     function isDef(v) {
@@ -75,6 +75,16 @@ https://github.com/WebReflection/document-register-element
      * turns data[BUNDLE_ID] turns into data[0] for production builds.
      */
     /**
+     * Member Types
+     */
+    var MEMBER_PROP = 1;
+    var MEMBER_PROP_STATE = 2;
+    var MEMBER_PROP_CONTEXT = 3;
+    var MEMBER_PROP_CONNECT = 4;
+    var MEMBER_STATE = 5;
+    var MEMBER_METHOD = 6;
+    var MEMBER_ELEMENT_REF = 7;
+    /**
      * Prop Change Meta Indexes
      */
     var PROP_CHANGE_PROP_NAME = 0;
@@ -88,7 +98,6 @@ https://github.com/WebReflection/document-register-element
     /**
      * JS Property to Attribute Name Options
      */
-
     var ATTR_LOWER_CASE = 1;
     /**
      * Priority Levels
@@ -134,6 +143,17 @@ https://github.com/WebReflection/document-register-element
     /**
      * File names and value
      */
+
+    /**
+     * Errors
+     */
+
+    var QUEUE_EVENTS_ERROR = 2;
+    var WILL_LOAD_ERROR = 3;
+    var DID_LOAD_ERROR = 4;
+    var INIT_INSTANCE_ERROR = 5;
+    var RENDER_ERROR = 6;
+    var INITIAL_LOAD_ERROR = 7;
 
     function initElementListeners(plt, elm) {
         // so the element was just connected, which means it's in the DOM
@@ -1201,101 +1221,87 @@ https://github.com/WebReflection/document-register-element
         };
     }
 
-    function parseComponentRegistry(cmpRegistryData, registry) {
+    function parseComponentRegistry(cmpRegistryData, registry, attr) {
         // tag name will always be upper case
         var cmpMeta = {
             tagNameMeta: cmpRegistryData[0],
-            propsMeta: [
-            // every component defaults to always have
-            // the mode and color properties
-            // but only observe the color attribute
-            // mode cannot change after the component was created
-            { propName: 'color', attribName: 'color' }, { propName: 'mode' }]
+            membersMeta: {
+                // every component defaults to always have
+                // the mode and color properties
+                'mode': { memberType: MEMBER_PROP },
+                'color': { memberType: MEMBER_PROP }
+            }
         };
+        // this comonent's module id
         cmpMeta.moduleId = cmpRegistryData[1];
         // map of the modes w/ bundle id and style data
         cmpMeta.styleIds = cmpRegistryData[2] || {};
-        // slot
-        cmpMeta.slotMeta = cmpRegistryData[3];
+        // parse member meta
+        // this data only includes props that are attributes that need to be observed
+        // it does not include all of the props yet
+        parseMembersData(cmpMeta, cmpRegistryData[3], attr);
         if (cmpRegistryData[4]) {
-            // parse prop meta
-            for (var i = 0; i < cmpRegistryData[4].length; i++) {
-                var d = cmpRegistryData[4][i];
-                cmpMeta.propsMeta.push({
-                    propName: d[0],
-                    attribName: d[1] === ATTR_LOWER_CASE ? d[0].toLowerCase() : toDashCase(d[0]),
-                    propType: d[2],
-                    isStateful: !!d[3]
-                });
-            }
-        }
-        if (cmpRegistryData[5]) {
             // parse listener meta
-            cmpMeta.listenersMeta = [];
-            for (i = 0; i < cmpRegistryData[5].length; i++) {
-                d = cmpRegistryData[5][i];
-                cmpMeta.listenersMeta.push({
-                    eventName: d[0],
-                    eventMethodName: d[1],
-                    eventDisabled: !!d[2],
-                    eventPassive: !!d[3],
-                    eventCapture: !!d[4]
-                });
-            }
+            cmpMeta.listenersMeta = cmpRegistryData[4].map(parseListenerData);
         }
+        // slot
+        cmpMeta.slotMeta = cmpRegistryData[5];
         // bundle load priority
         cmpMeta.loadPriority = cmpRegistryData[6];
         return registry[cmpMeta.tagNameMeta] = cmpMeta;
     }
-    function parseComponentMeta(registry, moduleImports, cmpMetaData) {
+    function parseListenerData(listenerData) {
+        return {
+            eventName: listenerData[0],
+            eventMethodName: listenerData[1],
+            eventDisabled: !!listenerData[2],
+            eventPassive: !!listenerData[3],
+            eventCapture: !!listenerData[4]
+        };
+    }
+    function parseMembersData(cmpMeta, memberData, attr) {
+        if (memberData) {
+            cmpMeta.membersMeta = cmpMeta.membersMeta || {};
+            for (var i = 0; i < memberData.length; i++) {
+                var d = memberData[i];
+                cmpMeta.membersMeta[d[0]] = {
+                    memberType: d[1],
+                    attribName: attr === ATTR_LOWER_CASE ? d[0].toLowerCase() : toDashCase(d[0]),
+                    propType: d[2],
+                    ctrlId: d[3]
+                };
+            }
+        }
+    }
+    function parseComponentMeta(registry, moduleImports, cmpMetaData, attr) {
         // tag name will always be upper case
         var cmpMeta = registry[cmpMetaData[0]];
         // get the component class which was added to moduleImports
         // using the tag as the key on the export object
         cmpMeta.componentModule = moduleImports[cmpMetaData[0]];
-        // host
-        cmpMeta.hostMeta = cmpMetaData[1];
-        // component listeners
-        if (cmpMetaData[2]) {
-            cmpMeta.listenersMeta = [];
-            for (var i = 0; i < cmpMetaData[2].length; i++) {
-                var data = cmpMetaData[2][i];
-                cmpMeta.listenersMeta.push({
-                    eventMethodName: data[0],
-                    eventName: data[1],
-                    eventCapture: !!data[2],
-                    eventPassive: !!data[3],
-                    eventDisabled: !!data[4]
-                });
-            }
-        }
-        // component states
-        cmpMeta.statesMeta = cmpMetaData[2];
-        // component instance prop WILL change methods
-        cmpMeta.propsWillChangeMeta = cmpMetaData[3];
-        // component instance prop DID change methods
-        cmpMeta.propsDidChangeMeta = cmpMetaData[4];
+        // component members
+        parseMembersData(cmpMeta, cmpMetaData[1], attr);
+        // host element meta
+        cmpMeta.hostMeta = cmpMetaData[2];
         // component instance events
-        if (cmpMetaData[5]) {
-            cmpMeta.eventsMeta = [];
-            for (i = 0; i < cmpMetaData[5].length; i++) {
-                data = cmpMetaData[5][i];
-                cmpMeta.eventsMeta.push({
-                    eventName: data[0],
-                    eventMethodName: data[1],
-                    eventBubbles: !!data[2],
-                    eventCancelable: !!data[3],
-                    eventComposed: !!data[4]
-                });
-            }
+        if (cmpMetaData[3]) {
+            cmpMeta.eventsMeta = cmpMetaData[3].map(parseEventData);
         }
-        // component methods
-        cmpMeta.methodsMeta = cmpMetaData[6];
-        // member name which the component instance should
-        // use when referencing the host element
-        cmpMeta.hostElementMember = cmpMetaData[7];
+        // component instance prop WILL change methods
+        cmpMeta.propsWillChangeMeta = cmpMetaData[4];
+        // component instance prop DID change methods
+        cmpMeta.propsDidChangeMeta = cmpMetaData[5];
         // is shadow
-        cmpMeta.isShadowMeta = !!cmpMetaData[8];
+        cmpMeta.isShadowMeta = !!cmpMetaData[6];
+    }
+    function parseEventData(d) {
+        return {
+            eventName: d[0],
+            eventMethodName: d[1] || d[0],
+            eventBubbles: !d[2],
+            eventCancelable: !d[3],
+            eventComposed: !d[4]
+        };
     }
     function parsePropertyValue(propType, propValue) {
         // ensure this value is of the correct prop type
@@ -1322,14 +1328,17 @@ https://github.com/WebReflection/document-register-element
             attribName = attribName.toLowerCase();
             // using the known component meta data
             // look up to see if we have a property wired up to this attribute name
-            var prop = plt.getComponentMeta(elm).propsMeta.find(function (p) {
-                return p.attribName === attribName;
-            });
-            if (prop) {
-                // cool we've got a prop using this attribute name the value will
-                // be a string, so let's convert it to the correct type the app wants
-                // below code is ugly yes, but great minification ;)
-                elm[prop.propName] = parsePropertyValue(prop.propType, newVal);
+            var propsMeta = plt.getComponentMeta(elm).membersMeta;
+            if (propsMeta) {
+                for (var propName in propsMeta) {
+                    if (propsMeta[propName].attribName === attribName) {
+                        // cool we've got a prop using this attribute name the value will
+                        // be a string, so let's convert it to the correct type the app wants
+                        // below code is ugly yes, but great minification ;)
+                        elm[propName] = parsePropertyValue(propsMeta[propName].propType, newVal);
+                        break;
+                    }
+                }
             }
         }
     }
@@ -1345,6 +1354,9 @@ https://github.com/WebReflection/document-register-element
             // we do this now so that we can listening to events that may
             // have fired even before the instance is ready
             initElementListeners(plt, elm);
+            // register this component as an actively
+            // loading child to its parent component
+            registerWithParentComponent(plt, elm);
             // add to the queue to load the bundle
             // it's important to have an async tick in here so we can
             // ensure the "mode" attribute has been added to the element
@@ -1353,9 +1365,6 @@ https://github.com/WebReflection/document-register-element
             plt.queue.add(function () {
                 // get the component meta data about this component
                 var cmpMeta = plt.getComponentMeta(elm);
-                // async tick has happened, so all of the child
-                // nodes and host attributes should now be in the DOM
-                collectHostContent(plt, elm);
                 // only collects slot references if this component even has slots
                 plt.connectHostElement(elm, cmpMeta.slotMeta);
                 // start loading this component mode's bundle
@@ -1368,7 +1377,7 @@ https://github.com/WebReflection/document-register-element
             }, PRIORITY_HIGH);
         }
     }
-    function collectHostContent(plt, elm) {
+    function registerWithParentComponent(plt, elm) {
         // find the first ancestor host element (if there is one) and register
         // this element as one of the actively loading child elements for its ancestor
         var ancestorHostElement = elm;
@@ -1464,27 +1473,30 @@ https://github.com/WebReflection/document-register-element
             var isInitialLoad = !elm.$instance;
             if (isInitialLoad) {
                 // haven't created a component instance for this host element yet
-                initComponentInstance(plt, elm);
+                try {
+                    initComponentInstance(plt, elm);
+                } catch (e) {
+                    plt.onError(INIT_INSTANCE_ERROR, e, elm);
+                }
             }
             // if this component has a render function, let's fire
             // it off and generate a vnode for this
-            elm._render(!isInitialLoad);
+            try {
+                elm._render(!isInitialLoad);
+            } catch (e) {
+                plt.onError(RENDER_ERROR, e, elm);
+            }
             if (isInitialLoad) {
-                elm._initLoad();
+                try {
+                    elm._initLoad();
+                } catch (e) {
+                    plt.onError(INITIAL_LOAD_ERROR, e, elm);
+                }
             }
         }
     }
 
     function initProxy(plt, elm, instance, cmpMeta) {
-        var i = 0;
-        if (cmpMeta.methodsMeta) {
-            // instances will already have the methods on them
-            // but you can also expose methods to the proxy element
-            // using @Method(). Think of like .focus() for an element.
-            for (; i < cmpMeta.methodsMeta.length; i++) {
-                initMethod(cmpMeta.methodsMeta[i], elm, instance);
-            }
-        }
         // used to store instance data internally so that we can add
         // getters/setters with the same name, and then do change detection
         var values = instance.__values = {};
@@ -1496,95 +1508,98 @@ https://github.com/WebReflection/document-register-element
             // this component has prop DID change methods, so init the object to store them
             values.__propDidChange = {};
         }
-        if (cmpMeta.statesMeta) {
-            // add getters/setters to instance properties that are not already set as @Prop()
-            // these are instance properties that should trigger a render update when
-            // they change. Like @Prop(), except data isn't passed in and is only state data.
-            // Unlike @Prop, state properties do not add getters/setters to the proxy element
-            // and initial values are not checked against the proxy element or config
-            for (i = 0; i < cmpMeta.statesMeta.length; i++) {
-                initProperty(false, true, '', cmpMeta.statesMeta[i], 0, instance, values, plt, elm, cmpMeta.propsWillChangeMeta, cmpMeta.propsDidChangeMeta);
-            }
-        }
-        if (cmpMeta.propsMeta) {
-            for (i = 0; i < cmpMeta.propsMeta.length; i++) {
+        if (cmpMeta.membersMeta) {
+            for (var memberName in cmpMeta.membersMeta) {
                 // add getters/setters for @Prop()s
-                initProperty(true, cmpMeta.propsMeta[i].isStateful, cmpMeta.propsMeta[i].attribName, cmpMeta.propsMeta[i].propName, cmpMeta.propsMeta[i].propType, instance, instance.__values, plt, elm, cmpMeta.propsWillChangeMeta, cmpMeta.propsDidChangeMeta);
+                var memberMeta = cmpMeta.membersMeta[memberName];
+                var memberType = memberMeta.memberType;
+                if (memberType === MEMBER_PROP_CONTEXT) {
+                    // @Prop({ context: 'config' })
+                    var contextObj = Context[memberMeta.ctrlId];
+                    contextObj && defineProperty(instance, memberName, contextObj.getContext && contextObj.getContext(elm) || contextObj);
+                } else if (memberType === MEMBER_PROP_CONNECT) {
+                    // @Prop({ connect: 'ion-loading-ctrl' })
+                    defineProperty(instance, memberName, plt.propConnect(memberMeta.ctrlId));
+                } else if (memberType === MEMBER_METHOD) {
+                    // add a value getter on the dom's element instance
+                    // pointed at the instance's method
+                    defineProperty(elm, memberName, instance[memberName].bind(instance));
+                } else if (memberType === MEMBER_ELEMENT_REF) {
+                    // add a getter to the element reference using
+                    // the member name the component meta provided
+                    defineProperty(instance, memberName, elm);
+                } else {
+                    // @Prop and @State
+                    initProp(memberName, memberType, memberMeta.attribName, memberMeta.propType, values, plt, elm, instance, cmpMeta.propsWillChangeMeta, cmpMeta.propsDidChangeMeta);
+                }
             }
         }
     }
-    function initMethod(methodName, elm, instance) {
-        // add a getter on the dom's element instance
-        // pointed at the instance's method
-        Object.defineProperty(elm, methodName, {
-            configurable: true,
-            value: instance[methodName].bind(instance)
-        });
-    }
-    function initProperty(isProp, isStateful, attrName, propName, propType, instance, internalValues, plt, elm, propWillChangeMeta, propDidChangeMeta) {
-        if (isProp) {
-            // @Prop() property, so check initial value from the proxy element, instance
-            // and config, before we create getters/setters on this same property name
-            var hostAttrValue = elm.getAttribute(attrName);
-            if (hostAttrValue !== null) {
-                // looks like we've got an initial value from the attribute
-                internalValues[propName] = parsePropertyValue(propType, hostAttrValue);
-            } else if (elm[propName] !== undefined) {
-                // looks like we've got an initial value on the proxy element
-                internalValues[propName] = parsePropertyValue(propType, elm[propName]);
-            } else if (instance[propName] !== undefined) {
-                // looks like we've got an initial value on the instance already
-                internalValues[propName] = instance[propName];
-            }
-        } else {
+    function initProp(memberName, memberType, attribName, propType, internalValues, plt, elm, instance, propWillChangeMeta, propDidChangeMeta) {
+        if (memberType === MEMBER_STATE) {
             // @State() property, so copy the value directly from the instance
             // before we create getters/setters on this same property name
-            internalValues[propName] = instance[propName];
+            internalValues[memberName] = instance[memberName];
+        } else {
+            // @Prop() property, so check initial value from the proxy element and instance
+            // before we create getters/setters on this same property name
+            // we do this for @Prop(state: true) also
+            var hostAttrValue = elm.getAttribute(attribName);
+            if (hostAttrValue !== null) {
+                // looks like we've got an initial value from the attribute
+                internalValues[memberName] = parsePropertyValue(propType, hostAttrValue);
+            } else if (elm[memberName] !== undefined) {
+                // looks like we've got an initial value on the proxy element
+                internalValues[memberName] = parsePropertyValue(propType, elm[memberName]);
+            } else if (instance[memberName] !== undefined) {
+                // looks like we've got an initial value on the instance already
+                internalValues[memberName] = instance[memberName];
+            }
         }
         var i = 0;
         if (propWillChangeMeta) {
             // there are prop WILL change methods for this component
-            for (i = 0; i < propWillChangeMeta.length; i++) {
-                if (propWillChangeMeta[i][PROP_CHANGE_PROP_NAME] === propName) {
+            for (; i < propWillChangeMeta.length; i++) {
+                if (propWillChangeMeta[i][PROP_CHANGE_PROP_NAME] === memberName) {
                     // cool, we should watch for changes to this property
                     // let's bind their watcher function and add it to our list
                     // of watchers, so any time this property changes we should
                     // also fire off their @PropWillChange() method
-                    internalValues.__propWillChange[propName] = instance[propWillChangeMeta[i][PROP_CHANGE_METHOD_NAME]].bind(instance);
+                    internalValues.__propWillChange[memberName] = instance[propWillChangeMeta[i][PROP_CHANGE_METHOD_NAME]].bind(instance);
                 }
             }
         }
         if (propDidChangeMeta) {
             // there are prop DID change methods for this component
             for (i = 0; i < propDidChangeMeta.length; i++) {
-                if (propDidChangeMeta[i][PROP_CHANGE_PROP_NAME] === propName) {
+                if (propDidChangeMeta[i][PROP_CHANGE_PROP_NAME] === memberName) {
                     // cool, we should watch for changes to this property
                     // let's bind their watcher function and add it to our list
                     // of watchers, so any time this property changes we should
                     // also fire off their @PropDidChange() method
-                    internalValues.__propDidChange[propName] = instance[propDidChangeMeta[i][PROP_CHANGE_METHOD_NAME]].bind(instance);
+                    internalValues.__propDidChange[memberName] = instance[propDidChangeMeta[i][PROP_CHANGE_METHOD_NAME]].bind(instance);
                 }
             }
         }
         function getValue() {
             // get the property value directly from our internal values
-            return internalValues[propName];
+            return internalValues[memberName];
         }
         function setValue(newVal) {
             // check our new property value against our internal value
-            var oldVal = internalValues[propName];
+            var oldVal = internalValues[memberName];
             // TODO: account for Arrays/Objects
             if (newVal !== oldVal) {
                 // gadzooks! the property's value has changed!!
-                if (internalValues.__propWillChange && internalValues.__propWillChange[propName]) {
+                if (internalValues.__propWillChange && internalValues.__propWillChange[memberName]) {
                     // this instance is watching for when this property WILL change
-                    internalValues.__propWillChange[propName](newVal, oldVal);
+                    internalValues.__propWillChange[memberName](newVal, oldVal);
                 }
                 // set our new value!
-                internalValues[propName] = newVal;
-                if (internalValues.__propDidChange && internalValues.__propDidChange[propName]) {
+                internalValues[memberName] = newVal;
+                if (internalValues.__propDidChange && internalValues.__propDidChange[memberName]) {
                     // this instance is watching for when this property DID change
-                    internalValues.__propDidChange[propName](newVal, oldVal);
+                    internalValues.__propDidChange[memberName](newVal, oldVal);
                 }
                 // looks like this value actually changed, we've got work to do!
                 // queue that we need to do an update, don't worry
@@ -1593,35 +1608,56 @@ https://github.com/WebReflection/document-register-element
                 queueUpdate(plt, elm);
             }
         }
-        if (isProp) {
-            // dom's element instance
-            // only place getters/setters on element for props
-            // state getters/setters should not be assigned to the element
-            Object.defineProperty(elm, propName, {
-                configurable: true,
-                get: getValue,
-                set: setValue
+        if (memberType === MEMBER_PROP || memberType === MEMBER_PROP_STATE) {
+            // @Prop() and @Prop({ state: true })
+            // have both getters and setters on the DOM element
+            // @State() getters and setters should not be assigned to the element
+            defineProperty(elm, memberName, 0, getValue, setValue);
+        }
+        if (memberType === MEMBER_PROP_STATE || memberType === MEMBER_STATE) {
+            // @Prop({ state: true }) and @State()
+            // have both getters and setters on the instance
+            defineProperty(instance, memberName, 0, getValue, setValue);
+        } else if (memberType === MEMBER_PROP) {
+            // @Prop() only has getters, but not setters on the instance
+            defineProperty(instance, memberName, 0, getValue, function invalidSetValue() {
+                // this is not a stateful @Prop()
+                // so do not update the instance or host element
+                // TODO: remove this warning in prod mode
+                console.warn('@Prop() "' + memberName + '" on "' + elm.tagName.toLowerCase() + '" cannot be modified.');
             });
         }
-        // user's component class instance
-        var instancePropDesc = {
-            configurable: true,
-            get: getValue
+    }
+    function defineProperty(obj, propertyKey, value, getter, setter) {
+        // minification shortcut
+        var descriptor = {
+            configurable: true
         };
-        if (isStateful) {
-            // this is a state property, or it's a prop that can keep state
-            // for props it's mainly used for props on inputs like "checked"
-            instancePropDesc.set = setValue;
-        } else {
-            // dev mode warning only
-            instancePropDesc.set = function invalidSetValue() {
-                // this is not a stateful prop
-                // so do not update the instance or host element
-                console.warn('@Prop() "' + propName + '" on "' + elm.tagName.toLowerCase() + '" cannot be modified.');
-            };
+        if (value) {
+            descriptor.value = value;
         }
-        // define on component class instance
-        Object.defineProperty(instance, propName, instancePropDesc);
+        if (getter) {
+            descriptor.get = getter;
+        }
+        if (setter) {
+            descriptor.set = setter;
+        }
+        Object.defineProperty(obj, propertyKey, descriptor);
+    }
+    function proxyControllerProp(domApi, controllerComponents, obj, ctrlTag, proxyMethodName) {
+        obj[proxyMethodName] = function () {
+            var orgArgs = arguments;
+            return new Promise(function (resolve) {
+                var ctrlElm = controllerComponents[ctrlTag];
+                if (!ctrlElm) {
+                    ctrlElm = controllerComponents[ctrlTag] = domApi.$createElement(ctrlTag);
+                    domApi.$appendChild(domApi.$body, ctrlElm);
+                }
+                ctrlElm.componentOnReady(function (ctrlElm) {
+                    ctrlElm[proxyMethodName].apply(ctrlElm, orgArgs).then(resolve);
+                });
+            });
+        };
     }
 
     function createThemedClasses(mode, color, classList) {
@@ -1703,15 +1739,27 @@ https://github.com/WebReflection/document-register-element
         HostElementConstructor.disconnectedCallback = function () {
             disconnectedCallback(plt, this);
         };
+        HostElementConstructor.componentOnReady = function (cb) {
+            componentOnReady(this, cb);
+        };
         HostElementConstructor._queueUpdate = function () {
             queueUpdate(plt, this);
         };
         HostElementConstructor._initLoad = function () {
-            initLoad(this);
+            initLoad(plt, this);
         };
         HostElementConstructor._render = function (isInitialRender) {
             render(plt, this, isInitialRender);
         };
+    }
+    function componentOnReady(elm, cb) {
+        if (!elm._hasDestroyed) {
+            if (elm._hasLoaded) {
+                cb(elm);
+            } else {
+                (elm._onReadyCallbacks = elm._onReadyCallbacks || []).push(cb);
+            }
+        }
     }
     function initComponentInstance(plt, elm) {
         // using the component's class, let's create a new instance
@@ -1719,15 +1767,6 @@ https://github.com/WebReflection/document-register-element
         var instance = elm.$instance = new cmpMeta.componentModule();
         // let's automatically add a reference to the host element on the instance
         instance.__el = elm;
-        if (cmpMeta.hostElementMember) {
-            // also add a getter to the element reference using
-            // the member name the component meta provided
-            Object.defineProperty(instance, cmpMeta.hostElementMember, {
-                get: function () {
-                    return this.__el;
-                }
-            });
-        }
         // so we've got an host element now, and a actual instance
         // let's wire them up together with getter/settings
         // the setters are use for change detection and knowing when to re-render
@@ -1737,13 +1776,21 @@ https://github.com/WebReflection/document-register-element
         initEventEmitters(plt, cmpMeta.eventsMeta, instance);
         // reply any event listeners on the instance that were queued up between the time
         // the element was connected and before the instance was ready
-        replayQueuedEventsOnInstance(elm);
+        try {
+            replayQueuedEventsOnInstance(elm);
+        } catch (e) {
+            plt.onError(QUEUE_EVENTS_ERROR, e, elm);
+        }
         // fire off the user's componentWillLoad method (if one was provided)
         // componentWillLoad only runs ONCE, after instance's element has been
         // assigned as the host element, but BEFORE render() has been called
-        instance.componentWillLoad && instance.componentWillLoad();
+        try {
+            instance.componentWillLoad && instance.componentWillLoad();
+        } catch (e) {
+            plt.onError(WILL_LOAD_ERROR, e, elm);
+        }
     }
-    function initLoad(elm) {
+    function initLoad(plt, elm) {
         var instance = elm.$instance;
         // it's possible that we've already decided to destroy this element
         // check if this element has any actively loading child elements
@@ -1755,10 +1802,23 @@ https://github.com/WebReflection/document-register-element
             // sweet, this particular element is good to go
             // all of this element's children have loaded (if any)
             elm._hasLoaded = true;
-            // fire off the user's componentDidLoad method (if one was provided)
-            // componentDidLoad only runs ONCE, after the instance's element has been
-            // assigned as the host element, and AFTER render() has been called
-            instance.componentDidLoad && instance.componentDidLoad();
+            try {
+                // fire off the user's elm.componentOnReady() callbacks that were
+                // put directly on the element (well before anything was ready)
+                if (elm._onReadyCallbacks) {
+                    elm._onReadyCallbacks.forEach(function (cb) {
+                        cb(elm);
+                    });
+                    delete elm._onReadyCallbacks;
+                }
+                // fire off the user's componentDidLoad method (if one was provided)
+                // componentDidLoad only runs ONCE, after the instance's element has been
+                // assigned as the host element, and AFTER render() has been called
+                // we'll also fire this method off on the element, just to
+                instance.componentDidLoad && instance.componentDidLoad();
+            } catch (e) {
+                plt.onError(DID_LOAD_ERROR, e, elm);
+            }
             // add the css class that this element has officially hydrated
             elm.classList.add(HYDRATED_CSS);
             // ( •_•)
@@ -1788,38 +1848,41 @@ https://github.com/WebReflection/document-register-element
         }
     }
 
-    function createPlatformClient(Core, App, win, doc, publicPath) {
+    function createPlatformClient(Context, App, win, doc, publicPath) {
         var registry = { 'HTML': {} };
         var moduleImports = {};
         var moduleCallbacks = {};
         var loadedModules = {};
         var loadedStyles = {};
         var pendingModuleRequests = {};
+        var controllerComponents = {};
         var domApi = createDomApi(doc);
         var now = getNowFunction(win);
         // initialize Core global object
-        Core.dom = createDomControllerClient(win, now);
-        Core.addListener = function addListener(elm, eventName, cb, opts) {
-            return addEventListener(plt, elm, eventName, cb, opts.capture, opts.passive);
+        Context.dom = createDomControllerClient(win, now);
+        Context.addListener = function addListener(elm, eventName, cb, opts) {
+            return addEventListener(plt, elm, eventName, cb, opts && opts.capture, opts && opts.passive);
         };
-        Core.enableListener = function enableListener(instance, eventName, enabled, attachTo) {
+        Context.enableListener = function enableListener(instance, eventName, enabled, attachTo) {
             enableEventListener(plt, instance, eventName, enabled, attachTo);
         };
-        Core.emit = function emitEvent(elm, eventName, data) {
-            elm.dispatchEvent(new WindowCustomEvent(Core.eventNameFn ? Core.eventNameFn(eventName) : eventName, data));
+        Context.emit = function emitEvent(elm, eventName, data) {
+            elm && elm.dispatchEvent(new WindowCustomEvent(Context.eventNameFn ? Context.eventNameFn(eventName) : eventName, data));
         };
-        Core.isClient = true;
-        Core.isServer = false;
+        Context.isClient = true;
+        Context.isServer = false;
         // create the platform api which is used throughout common core code
         var plt = {
             registerComponents: registerComponents,
             defineComponent: defineComponent,
             getComponentMeta: getComponentMeta,
+            propConnect: propConnect,
             loadBundle: loadBundle,
-            queue: createQueueClient(Core.dom, now),
+            queue: createQueueClient(Context.dom, now),
             connectHostElement: connectHostElement,
-            emitEvent: Core.emit,
-            getEventOptions: getEventOptions
+            emitEvent: Context.emit,
+            getEventOptions: getEventOptions,
+            onError: onError
         };
         // create the renderer that will be used
         plt.render = createRenderer(plt, domApi);
@@ -1845,7 +1908,7 @@ https://github.com/WebReflection/document-register-element
                 // looks like mode wasn't set as a property directly yet
                 // first check if there's an attribute
                 // next check the app's global
-                elm.mode = domApi.$getAttribute(elm, 'mode') || Core.mode;
+                elm.mode = domApi.$getAttribute(elm, 'mode') || Context.mode;
             }
             // host element has been connected to the DOM
             if (!domApi.$getAttribute(elm, SSR_VNODE_ID)) {
@@ -1865,19 +1928,28 @@ https://github.com/WebReflection/document-register-element
             // initialize the properties on the component module prototype
             initHostConstructor(plt, HostElementConstructor.prototype);
             // add which attributes should be observed
-            HostElementConstructor.observedAttributes = cmpMeta.propsMeta.filter(function (p) {
-                return p.attribName;
-            }).map(function (p) {
-                return p.attribName;
-            });
+            var observedAttributes = [];
+            // at this point the membersMeta only includes attributes which should
+            // be observed, it does not include all props yet, so it's safe to
+            // loop through all of the props (attrs) and observed them
+            for (var propName in cmpMeta.membersMeta) {
+                // initialize the actual attribute name used vs. the prop name
+                // for example, "myProp" would be "my-prop" as an attribute
+                // and these can be configured to be all lower case or dash case (default)
+                observedAttributes.push(
+                // dynamically generate the attribute name from the prop name
+                // also add it to our array of attributes we need to observe
+                cmpMeta.membersMeta[propName].attribName);
+            }
+            HostElementConstructor.observedAttributes = observedAttributes;
             // define the custom element
             win.customElements.define(cmpMeta.tagNameMeta.toLowerCase(), HostElementConstructor);
         }
-        App.defineComponents = function defineComponents(moduleId, importFn) {
+        App.loadComponents = function loadComponents(moduleId, importFn) {
             var args = arguments;
             // import component function
             // inject globals
-            importFn(moduleImports, h, t, Core, publicPath);
+            importFn(moduleImports, h, t, Context, publicPath);
             for (var i = 2; i < args.length; i++) {
                 // parse the external component data into internal component meta data
                 // then add our set of prototype methods to the component module
@@ -1907,15 +1979,8 @@ https://github.com/WebReflection/document-register-element
                 } else {
                     moduleCallbacks[moduleId] = [cb];
                 }
-                // create the url we'll be requesting
-                var url = publicPath + moduleId + '.js';
-                if (!pendingModuleRequests[url]) {
-                    // not already actively requesting this url
-                    // remember that we're now actively requesting this url
-                    pendingModuleRequests[url] = true;
-                    // let's kick off the module request
-                    jsonp(url);
-                }
+                // start the request for the component module
+                requestModule(moduleId);
                 // we also need to load the css file in the head
                 // we've already figured out and set "mode" as a property to the element
                 var styleId = cmpMeta.styleIds[elm.mode] || cmpMeta.styleIds.$;
@@ -1930,7 +1995,17 @@ https://github.com/WebReflection/document-register-element
                 }
             }
         }
-        function jsonp(url) {
+        function requestModule(moduleId) {
+            // create the url we'll be requesting
+            var url = publicPath + moduleId + '.js';
+            if (pendingModuleRequests[url]) {
+                // we're already actively requesting this url
+                // no need to do another request
+                return;
+            }
+            // let's kick off the module request
+            // remember that we're now actively requesting this url
+            pendingModuleRequests[url] = true;
             // create a sript element to add to the document.head
             var scriptElm = domApi.$createElement('script');
             scriptElm.charset = 'utf-8';
@@ -1976,11 +2051,19 @@ https://github.com/WebReflection/document-register-element
                 passive: !!usePassive
             } : !!useCapture;
         }
+        function onError(type, err, elm) {
+            console.error(type, err, elm.tagName);
+        }
+        function propConnect(ctrlTag) {
+            var obj = {};
+            proxyControllerProp(domApi, controllerComponents, obj, ctrlTag, 'create');
+            return obj;
+        }
         return plt;
     }
 
     var App = window[appNamespace] = window[appNamespace] || {};
-    var plt = createPlatformClient(Core, App, window, document, publicPath);
+    var plt = createPlatformClient(Context, App, window, document, publicPath);
     plt.registerComponents(App.components).forEach(function (cmpMeta) {
         // note that we're extending HTMLElement the raw ES5 way
         // this is why there are two core files, and the browser
@@ -1991,5 +2074,5 @@ https://github.com/WebReflection/document-register-element
         HostElement.prototype = Object.create(HTMLElement.prototype, { constructor: { value: HostElement, configurable: true } });
         plt.defineComponent(cmpMeta, HostElement);
     });
-})(window, document, Core, appNamespace, publicPath);
+})(window, document, Context, appNamespace, publicPath);
 })({},"App","build/app/");

@@ -17,4 +17,4 @@
     x = document.createElement('script');
     x.src = window.customElements ? appCore : appCoreEs5;
     document.head.appendChild(x);
-})(window, document, "App","build/app/app.core.js","build/app/app.core.ce.js",[["FIBER-DEMO","fiber-demo.fiber-dot.fiber-triangle",0,0,[["elapsed",0,2]]],["FIBER-DOT","fiber-demo.fiber-dot.fiber-triangle",0,0,[["size",0,2],["text"],["x",0,2],["y",0,2]]],["FIBER-TRIANGLE","fiber-demo.fiber-dot.fiber-triangle",0,0,[["s",0,2],["seconds",0,2],["x",0,2],["y",0,2]]]]);
+})(window, document, "App","build/app/app.core.js","build/app/app.core.ce.js",[["FIBER-DEMO","fiber-demo",0,[["elapsed",1,2]]],["FIBER-DOT","fiber-demo",0,[["size",1,2],["text",1],["x",1,2],["y",1,2]]],["FIBER-TRIANGLE","fiber-demo",0,[["s",1,2],["seconds",1,2],["x",1,2],["y",1,2]]]]);

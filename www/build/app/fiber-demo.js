@@ -1,12 +1,12 @@
 /*! Built with http://stenciljs.com */
 
-App.defineComponents(
+App.loadComponents(
 
 /**** module id (dev mode) ****/
-'fiber-demo.fiber-dot.fiber-triangle',
+"fiber-demo",
 
 /**** component modules ****/
-function importComponent(exports, h, t, Core, publicPath) {
+function importComponent(exports, h, t, Context, publicPath) {
 var FiberDemo = (function () {
     function FiberDemo() {
         this.elapsed = 0;
@@ -110,33 +110,52 @@ exports['FIBER-TRIANGLE'] = FiberTriangle;
 
 /***************** fiber-demo *****************/
 [
-/** fiber-demo: [0] tag **/
-'FIBER-DEMO',
+/** fiber-demo: tag **/
+"FIBER-DEMO",
 
-/** fiber-demo: [1] host **/
+/** fiber-demo: members **/
+[
+  [ "elapsed", /** prop **/ 1, /** type number **/ 2 ]
+],
+
+/** fiber-demo: host **/
 {}
 
 ],
 
 /***************** fiber-dot *****************/
 [
-/** fiber-dot: [0] tag **/
-'FIBER-DOT',
+/** fiber-dot: tag **/
+"FIBER-DOT",
 
-/** fiber-dot: [1] host **/
-{},
+/** fiber-dot: members **/
+[
+  [ "hover", /** state **/ 5 ],
+  [ "size", /** prop **/ 1, /** type number **/ 2 ],
+  [ "text", /** prop **/ 1 ],
+  [ "x", /** prop **/ 1, /** type number **/ 2 ],
+  [ "y", /** prop **/ 1, /** type number **/ 2 ]
+],
 
-/** fiber-dot: [2] states **/
-['hover']
+/** fiber-dot: host **/
+{}
 
 ],
 
 /***************** fiber-triangle *****************/
 [
-/** fiber-triangle: [0] tag **/
-'FIBER-TRIANGLE',
+/** fiber-triangle: tag **/
+"FIBER-TRIANGLE",
 
-/** fiber-triangle: [1] host **/
+/** fiber-triangle: members **/
+[
+  [ "s", /** prop **/ 1, /** type number **/ 2 ],
+  [ "seconds", /** prop **/ 1, /** type number **/ 2 ],
+  [ "x", /** prop **/ 1, /** type number **/ 2 ],
+  [ "y", /** prop **/ 1, /** type number **/ 2 ]
+],
+
+/** fiber-triangle: host **/
 {}
 
 ]
