@@ -4,7 +4,7 @@
     "headers": [
       {
         "source": "/",
-        "headers": [{"key": "Link", "value": "</build/app/app.0fzjqob7.js>;rel=preload;as=script,</build/app/ncohzt3g.js>;rel=preload;as=script"}]
+        "headers": [{"key": "Link", "value": "</build/app/app.0fzjqob7.js>;rel=preload;as=script"}]
       }
     ],
     "ignore": [

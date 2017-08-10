@@ -3,7 +3,7 @@
   "components": [
     [
       "FIBER-DEMO",
-      "fiber-demo",
+      "ncohzt3g",
       0,
       [
         [
@@ -15,7 +15,7 @@
     ],
     [
       "FIBER-DOT",
-      "fiber-demo",
+      "ncohzt3g",
       0,
       [
         [
@@ -41,7 +41,7 @@
     ],
     [
       "FIBER-TRIANGLE",
-      "fiber-demo",
+      "ncohzt3g",
       0,
       [
         [
@@ -68,6 +68,6 @@
     ]
   ],
   "loader": "app.js",
-  "core": "app/app.core.js",
-  "coreEs5": "app/app.core.ce.js"
+  "core": "app/app.0fzjqob7.js",
+  "coreEs5": "app/app.b66btnel.ce.js"
 }
