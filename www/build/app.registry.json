@@ -68,6 +68,6 @@
     ]
   ],
   "loader": "app.js",
-  "core": "app/app.0fzjqob7.js",
-  "coreEs5": "app/app.b66btnel.ce.js"
+  "core": "app/app.k5wplboj.js",
+  "corePolyfilled": "app/app.az3oqu2e.pf.js"
 }

@@ -1,12 +1,6 @@
 {
   "hosting": {
     "public": "www",
-    "headers": [
-      {
-        "source": "/",
-        "headers": [{"key": "Link", "value": "</build/app/app.0fzjqob7.js>;rel=preload;as=script"}]
-      }
-    ],
     "ignore": [
       "firebase.json",
       "**/.*",
