@@ -27,6 +27,14 @@ export class FiberTriangle {
     }
     s = s / 2;
 
+    var slowDown = true;
+    if (slowDown) {
+      var e = performance.now() + 0.8;
+      while (performance.now() < e) {
+        // Artificially long execution time.
+      }
+    }
+
     return [
       <fiber-triangle
         x={this.x}
