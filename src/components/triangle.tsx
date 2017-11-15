@@ -4,7 +4,7 @@ var targetSize = 25;
 
 @Component({
   tag: 'fiber-triangle',
-  shadow: false
+  shadow: true
 })
 export class FiberTriangle {
 

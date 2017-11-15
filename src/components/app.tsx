@@ -1,7 +1,8 @@
 import { Component, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'fiber-demo'
+  tag: 'fiber-demo',
+  shadow: true
 })
 export class FiberDemo {
   @Prop() elapsed: number = 0;

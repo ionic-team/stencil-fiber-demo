@@ -1,7 +1,8 @@
 import { Component, Prop, State } from '@stencil/core';
 
 @Component({
-  tag: 'fiber-dot'
+  tag: 'fiber-dot',
+  shadow: true
 })
 export class FiberDot {
   @Prop() size: number;
