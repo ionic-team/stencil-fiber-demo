@@ -4,13 +4,24 @@
  * and imports for stencil collections that might be configured in your stencil.config.js file
  */
 
+import '@stencil/router';
+
+
+declare global {
+  interface HTMLStencilElement extends HTMLElement {
+    componentOnReady(): Promise<this>;
+    componentOnReady(done: (ele?: this) => void): void;
+  }
+}
+
+
 
 import {
   FiberDemo as FiberDemo
 } from './components/app';
 
 declare global {
-  interface HTMLFiberDemoElement extends FiberDemo, HTMLElement {
+  interface HTMLFiberDemoElement extends FiberDemo, HTMLStencilElement {
   }
   var HTMLFiberDemoElement: {
     prototype: HTMLFiberDemoElement;
@@ -29,8 +40,7 @@ declare global {
   }
   namespace JSXElements {
     export interface FiberDemoAttributes extends HTMLAttributes {
-      
-        elapsed?: number
+      elapsed?: number;
     }
   }
 }
@@ -41,7 +51,7 @@ import {
 } from './components/dot';
 
 declare global {
-  interface HTMLFiberDotElement extends FiberDot, HTMLElement {
+  interface HTMLFiberDotElement extends FiberDot, HTMLStencilElement {
   }
   var HTMLFiberDotElement: {
     prototype: HTMLFiberDotElement;
@@ -60,11 +70,10 @@ declare global {
   }
   namespace JSXElements {
     export interface FiberDotAttributes extends HTMLAttributes {
-      
-        size?: number,
-        x?: number,
-        y?: number,
-        text?: string
+      size?: number;
+      text?: string;
+      x?: number;
+      y?: number;
     }
   }
 }
@@ -75,7 +84,7 @@ import {
 } from './components/triangle';
 
 declare global {
-  interface HTMLFiberTriangleElement extends FiberTriangle, HTMLElement {
+  interface HTMLFiberTriangleElement extends FiberTriangle, HTMLStencilElement {
   }
   var HTMLFiberTriangleElement: {
     prototype: HTMLFiberTriangleElement;
@@ -94,12 +103,102 @@ declare global {
   }
   namespace JSXElements {
     export interface FiberTriangleAttributes extends HTMLAttributes {
-      
-        x?: number,
-        y?: number,
-        s?: number,
-        seconds?: number
+      s?: number;
+      seconds?: number;
+      x?: number;
+      y?: number;
     }
   }
 }
 
+
+import {
+  DemoPage as DemoPage
+} from './pages/demo-page';
+
+declare global {
+  interface HTMLDemoPageElement extends DemoPage, HTMLStencilElement {
+  }
+  var HTMLDemoPageElement: {
+    prototype: HTMLDemoPageElement;
+    new (): HTMLDemoPageElement;
+  };
+  interface HTMLElementTagNameMap {
+    "demo-page": HTMLDemoPageElement;
+  }
+  interface ElementTagNameMap {
+    "demo-page": HTMLDemoPageElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "demo-page": JSXElements.DemoPageAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface DemoPageAttributes extends HTMLAttributes {
+      
+    }
+  }
+}
+
+
+import {
+  IndexPage as IndexPage
+} from './pages/index-page';
+
+declare global {
+  interface HTMLIndexPageElement extends IndexPage, HTMLStencilElement {
+  }
+  var HTMLIndexPageElement: {
+    prototype: HTMLIndexPageElement;
+    new (): HTMLIndexPageElement;
+  };
+  interface HTMLElementTagNameMap {
+    "index-page": HTMLIndexPageElement;
+  }
+  interface ElementTagNameMap {
+    "index-page": HTMLIndexPageElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "index-page": JSXElements.IndexPageAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface IndexPageAttributes extends HTMLAttributes {
+      
+    }
+  }
+}
+
+
+import {
+  LandingPage as LandingPage
+} from './pages/landing-page';
+
+declare global {
+  interface HTMLLandingPageElement extends LandingPage, HTMLStencilElement {
+  }
+  var HTMLLandingPageElement: {
+    prototype: HTMLLandingPageElement;
+    new (): HTMLLandingPageElement;
+  };
+  interface HTMLElementTagNameMap {
+    "landing-page": HTMLLandingPageElement;
+  }
+  interface ElementTagNameMap {
+    "landing-page": HTMLLandingPageElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "landing-page": JSXElements.LandingPageAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface LandingPageAttributes extends HTMLAttributes {
+      
+    }
+  }
+}
+
+declare global { namespace JSX { interface StencilJSX {} } }

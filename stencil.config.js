@@ -1,7 +1,9 @@
 exports.config = {
-  bundles: [
-    { components: ['fiber-demo', 'fiber-triangle', 'fiber-dot'] }
-  ]
+  collections: [
+    { name: '@stencil/router' }
+  ],
+  globalStyle: 'src/global/app.css',
+  generateDistribution: true
 };
 
 exports.devServer = {

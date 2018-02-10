@@ -1,6 +1,7 @@
 import { Component, Prop } from '@stencil/core';
 
-var targetSize = 25;
+
+const targetSize = 25;
 
 @Component({
   tag: 'fiber-triangle',
@@ -14,25 +15,27 @@ export class FiberTriangle {
   @Prop() seconds: number;
 
   render() {
-    var s = this.s;
+    let s = this.s;
     if (s <= targetSize) {
       return (
         <fiber-dot
           x={this.x - (targetSize / 2)}
           y={this.y - (targetSize / 2)}
           size={targetSize}
-          text={this.seconds.toString()}
-        ></fiber-dot>
+          text={this.seconds.toString()}/>
       );
     }
     s = s / 2;
 
-    var slowDown = true;
-    if (slowDown) {
-      var e = performance.now() + 0.8;
-      while (performance.now() < e) {
-        // Artificially long execution time.
-      }
+    const ahhhhh = performance.now() + 1;
+    while (performance.now() < ahhhhh) {
+      // BRAIN FREEZE!!!!!
+      // Artificially long execution time.
+      // Artificially long execution time.
+      // Artificially long execution time.
+      // Artificially long execution time.
+      // Artificially long execution time.
+      // Artificially long execution time.
     }
 
     return [
@@ -40,20 +43,17 @@ export class FiberTriangle {
         x={this.x}
         y={this.y - (s / 2)}
         s={s}
-        seconds={this.seconds}
-      ></fiber-triangle>,
+        seconds={this.seconds}/>,
       <fiber-triangle
         x={this.x - s}
         y={this.y + (s / 2)}
         s={s}
-        seconds={this.seconds}
-      ></fiber-triangle>,
+        seconds={this.seconds}/>,
       <fiber-triangle
         x={ this.x + s}
         y={this.y + (s / 2)}
         s={s}
-        seconds={this.seconds}
-      ></fiber-triangle>
+        seconds={this.seconds}/>
     ];
   }
 }

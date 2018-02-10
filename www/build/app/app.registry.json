@@ -1,98 +1,37 @@
 {
   "namespace": "App",
-  "components": [
-    [
-      "fiber-demo",
-      [
-        "fdyiqxdn",
-        "lgokcbhz"
-      ],
-      0,
-      [
-        [
-          "elapsed",
-          1,
-          1,
-          4
-        ]
-      ],
-      1
-    ],
-    [
-      "fiber-dot",
-      [
-        "fdyiqxdn",
-        "lgokcbhz"
-      ],
-      0,
-      [
-        [
-          "hover",
-          5
-        ],
-        [
-          "size",
-          1,
-          1,
-          4
-        ],
-        [
-          "text",
-          1,
-          1,
-          2
-        ],
-        [
-          "x",
-          1,
-          1,
-          4
-        ],
-        [
-          "y",
-          1,
-          1,
-          4
-        ]
-      ],
-      1
-    ],
-    [
-      "fiber-triangle",
-      [
-        "fdyiqxdn",
-        "lgokcbhz"
-      ],
-      0,
-      [
-        [
-          "s",
-          1,
-          1,
-          4
-        ],
-        [
-          "seconds",
-          1,
-          1,
-          4
-        ],
-        [
-          "x",
-          1,
-          1,
-          4
-        ],
-        [
-          "y",
-          1,
-          1,
-          4
-        ]
-      ],
-      1
-    ]
-  ],
-  "core": "app.djni4tu0.js",
-  "corePolyfilled": "app.micujdsn.js"
+  "fsNamespace": "app",
+  "loader": "../app.js",
+  "global": "app.global.js",
+  "core": "app.core.js",
+  "corePolyfilled": "es5-build-disabled.js",
+  "components": {
+    "demo-page": {
+      "$": "demo-page"
+    },
+    "fiber-demo": {
+      "$": "fiber-demo"
+    },
+    "fiber-dot": {
+      "$": "fiber-demo"
+    },
+    "fiber-triangle": {
+      "$": "fiber-demo"
+    },
+    "index-page": {
+      "$": "index-page"
+    },
+    "landing-page": {
+      "$": "landing-page"
+    },
+    "stencil-route": {
+      "$": "index-page"
+    },
+    "stencil-route-link": {
+      "$": "landing-page"
+    },
+    "stencil-router": {
+      "$": "index-page"
+    }
+  }
 }
