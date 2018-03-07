@@ -3,6 +3,20 @@
  * It contains typing information for all components that exist in this project
  * and imports for stencil collections that might be configured in your stencil.config.js file
  */
+declare global {
+  namespace JSX {
+    interface Element {}
+    export interface IntrinsicElements {}
+  }
+  namespace JSXElements {}
+
+  interface HTMLStencilElement extends HTMLElement {
+    componentOnReady(): Promise<this>;
+    componentOnReady(done: (ele?: this) => void): void;
+  }
+
+  interface HTMLAttributes {}
+}
 
 
 import {
@@ -10,7 +24,7 @@ import {
 } from './components/app';
 
 declare global {
-  interface HTMLFiberDemoElement extends FiberDemo, HTMLElement {
+  interface HTMLFiberDemoElement extends FiberDemo, HTMLStencilElement {
   }
   var HTMLFiberDemoElement: {
     prototype: HTMLFiberDemoElement;
@@ -29,8 +43,7 @@ declare global {
   }
   namespace JSXElements {
     export interface FiberDemoAttributes extends HTMLAttributes {
-      
-        elapsed?: number
+      elapsed?: number;
     }
   }
 }
@@ -41,7 +54,7 @@ import {
 } from './components/dot';
 
 declare global {
-  interface HTMLFiberDotElement extends FiberDot, HTMLElement {
+  interface HTMLFiberDotElement extends FiberDot, HTMLStencilElement {
   }
   var HTMLFiberDotElement: {
     prototype: HTMLFiberDotElement;
@@ -60,11 +73,10 @@ declare global {
   }
   namespace JSXElements {
     export interface FiberDotAttributes extends HTMLAttributes {
-      
-        size?: number,
-        x?: number,
-        y?: number,
-        text?: string
+      size?: number;
+      text?: string;
+      x?: number;
+      y?: number;
     }
   }
 }
@@ -75,7 +87,7 @@ import {
 } from './components/triangle';
 
 declare global {
-  interface HTMLFiberTriangleElement extends FiberTriangle, HTMLElement {
+  interface HTMLFiberTriangleElement extends FiberTriangle, HTMLStencilElement {
   }
   var HTMLFiberTriangleElement: {
     prototype: HTMLFiberTriangleElement;
@@ -94,12 +106,12 @@ declare global {
   }
   namespace JSXElements {
     export interface FiberTriangleAttributes extends HTMLAttributes {
-      
-        x?: number,
-        y?: number,
-        s?: number,
-        seconds?: number
+      s?: number;
+      seconds?: number;
+      x?: number;
+      y?: number;
     }
   }
 }
 
+declare global { namespace JSX { interface StencilJSX {} } }

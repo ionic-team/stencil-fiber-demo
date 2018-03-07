@@ -38,10 +38,8 @@ export class FiberDot {
 
     return {
       style: style,
-      on: {
-        mouseenter: this.enter.bind(this),
-        mouseleave: this.leave.bind(this)
-      },
+      onmouseenter: this.enter.bind(this),
+      onmouseleave: this.leave.bind(this)
     };
   }
 
