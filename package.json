@@ -12,9 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/ionic-team/stencil-fiber-demo.git"
   },
-  "dependencies": {
-    "@stencil/core": "^0.6.18"
-  },
+  "dependencies": {},
   "author": "",
   "license": "MIT",
   "bugs": {
@@ -22,6 +20,7 @@
   },
   "homepage": "https://github.com/ionic-team/stencil-fiber-demo#readme",
   "devDependencies": {
+    "@stencil/core": "^0.7.25",
     "@stencil/dev-server": "0.0.14",
     "@stencil/utils": "0.0.4"
   }

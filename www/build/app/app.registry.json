@@ -2,17 +2,17 @@
   "namespace": "App",
   "fsNamespace": "app",
   "loader": "../app.js",
-  "core": "app.core.js",
-  "corePolyfilled": "es5-build-disabled.js",
+  "core": "app.1hmlgr8o.js",
+  "corePolyfilled": "app.czkfgqjw.js",
   "components": {
     "fiber-demo": {
-      "$": "fiber-demo"
+      "$": "vfksdrha"
     },
     "fiber-dot": {
-      "$": "fiber-demo"
+      "$": "vfksdrha"
     },
     "fiber-triangle": {
-      "$": "fiber-demo"
+      "$": "vfksdrha"
     }
   }
 }
