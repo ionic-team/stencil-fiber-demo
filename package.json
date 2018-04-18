@@ -6,7 +6,8 @@
   "scripts": {
     "build": "stencil build",
     "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "npm run build && firebase deploy"
   },
   "repository": {
     "type": "git",
